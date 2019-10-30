@@ -2,6 +2,7 @@ package com.netcracker.dragun.controller;
 
 import com.netcracker.dragun.entity.User;
 import com.netcracker.dragun.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserController {
     private final UserService UserService;
 
+    @Autowired
     public UserController(UserService UserService) {
         this.UserService = UserService;
     }

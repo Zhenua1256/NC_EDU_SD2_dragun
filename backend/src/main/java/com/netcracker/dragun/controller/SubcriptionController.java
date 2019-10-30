@@ -2,6 +2,7 @@ package com.netcracker.dragun.controller;
 
 import com.netcracker.dragun.entity.Subcription;
 import com.netcracker.dragun.service.SubcriptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class SubcriptionController {
 
     private  final SubcriptionService SubcriptionService;
 
+    @Autowired
      public SubcriptionController(SubcriptionService SubcriptionService){
          this.SubcriptionService = SubcriptionService;
      }

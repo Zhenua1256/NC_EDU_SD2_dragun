@@ -1,12 +1,12 @@
 DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS logins CASCADE;
+DROP TABLE IF EXISTS datausers CASCADE;
 DROP TABLE IF EXISTS subscriptions CASCADE;
 DROP TABLE IF EXISTS subscriptionTypes CASCADE;
 DROP TABLE IF EXISTS billingAccounts CASCADE;
 DROP TABLE IF EXISTS subscriptionsList CASCADE;
 
 DROP SEQUENCE IF EXISTS users_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS logins_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS datausers_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS subscriptions_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS billingAccounts_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS subscriptionTypes_id_seq CASCADE;
@@ -16,9 +16,9 @@ CREATE SEQUENCE users_id_seq;
 ALTER SEQUENCE users_id_seq
     OWNER TO spring;
 
-CREATE SEQUENCE logins_id_seq;
+CREATE SEQUENCE datausers_id_seq;
 
-ALTER SEQUENCE logins_id_seq
+ALTER SEQUENCE datausers_id_seq
     OWNER TO spring;
 
 CREATE SEQUENCE subscriptions_id_seq;
@@ -40,8 +40,7 @@ CREATE TABLE users
 (
     id       bigint DEFAULT nextval('users_id_seq'::regclass),
     email    character varying(255),
-    role     character varying(255),
-    login bigint,
+    datausers bigint,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 )
     WITH (
@@ -50,12 +49,13 @@ CREATE TABLE users
     TABLESPACE pg_default;
 
 
-CREATE TABLE logins
+CREATE TABLE datausers
 (
-    id       bigint DEFAULT nextval('logins_id_seq'::regclass),
+    id       bigint DEFAULT nextval('datausers_id_seq'::regclass),
     login    character varying(255),
     password     character varying(255),
-    CONSTRAINT logins_pkey PRIMARY KEY (id)
+    role     character varying(255),
+    CONSTRAINT datausers_pkey PRIMARY KEY (id)
 )
     WITH (
         OIDS = FALSE
@@ -98,7 +98,7 @@ CREATE TABLE billingAccounts
     )
     TABLESPACE pg_default;
 
-CREATE TABLE subscriptionTypes
+CREATE TABLE subscriptiontypes
 (
     id          bigint DEFAULT nextval('subscriptionTypes_id_seq'::regclass),
     subscription_type character varying(255),
@@ -110,8 +110,8 @@ CREATE TABLE subscriptionTypes
     TABLESPACE pg_default;
 
 ALTER TABLE users
-    ADD CONSTRAINT fk_login FOREIGN KEY (login)
-        REFERENCES logins (id) MATCH SIMPLE
+    ADD CONSTRAINT fk_datausers FOREIGN KEY (datausers)
+        REFERENCES datausers (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE;
 
@@ -135,4 +135,4 @@ ALTER TABLE subscriptions
     ADD CONSTRAINT fk_type FOREIGN KEY (type)
         REFERENCES subscriptionTypes (id) MATCH SIMPLE
         ON UPDATE CASCADE
-        ON DELETE CASCADE;
+ON DELETE CASCADE;

@@ -1,4 +1,4 @@
-package com.netcraker.devschool.fapi;
+package com.netcraker.dragun;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

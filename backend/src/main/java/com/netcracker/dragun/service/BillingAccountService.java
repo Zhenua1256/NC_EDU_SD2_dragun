@@ -2,6 +2,7 @@ package com.netcracker.dragun.service;
 
 import com.netcracker.dragun.entity.BillingAccount;
 import com.netcracker.dragun.repository.BillingAccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 public class BillingAccountService {
     private final BillingAccountRepository BillingAccountRepository;
 
+    @Autowired
     public BillingAccountService (BillingAccountRepository BillingAccountRepository){
         this.BillingAccountRepository = BillingAccountRepository;
     }

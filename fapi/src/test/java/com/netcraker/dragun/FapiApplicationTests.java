@@ -1,4 +1,4 @@
-package com.netcraker.devschool.fapi;
+package com.netcraker.dragun;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

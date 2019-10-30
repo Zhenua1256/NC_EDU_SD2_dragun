@@ -15,9 +15,7 @@ public class User {
     private Long id;
 @Column(name = "email")
     private String email;
-@Column(name = "role")
-    private String role;
 @OneToOne
-@JoinColumn(name = "login")
-    private Login login;
+@JoinColumn(name = "datausers")
+    private DataUser datausers;
 }
