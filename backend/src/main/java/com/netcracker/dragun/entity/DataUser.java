@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "logins")
-public class Login {
+@Table(name = "datausers")
+public class DataUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -16,4 +16,6 @@ public class Login {
     private String login;
     @Column(name = "password")
     private String password;
+    @Column(name = "role")
+    private String role;
 }
