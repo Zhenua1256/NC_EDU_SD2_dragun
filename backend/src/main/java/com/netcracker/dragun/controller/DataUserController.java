@@ -13,20 +13,20 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/datausers")
 public class DataUserController {
-    private final DataUserService DataUserService;
+    private final DataUserService dataUserService;
 
     @Autowired
-    public DataUserController(DataUserService DataUserService) {
-        this.DataUserService = DataUserService;
+    public DataUserController(DataUserService dataUserService) {
+        this.dataUserService = dataUserService;
     }
 
     @GetMapping
     public List<DataUser> getAll() {
-        return DataUserService.getAll();
+        return dataUserService.getAll();
     }
 
     @GetMapping(value = "/{id}")
     public DataUser get(@PathVariable(name = "id") Long id) {
-        return DataUserService.get(id);
+        return dataUserService.get(id);
     }
 }

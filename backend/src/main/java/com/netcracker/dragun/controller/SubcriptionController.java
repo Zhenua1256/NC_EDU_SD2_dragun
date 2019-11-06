@@ -11,19 +11,19 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/subcription")
 public class SubcriptionController {
 
-    private  final SubcriptionService SubcriptionService;
+    private  final SubcriptionService subcriptionService;
 
     @Autowired
-     public SubcriptionController(SubcriptionService SubcriptionService){
-         this.SubcriptionService = SubcriptionService;
+     public SubcriptionController(SubcriptionService subcriptionService){
+         this.subcriptionService = subcriptionService;
      }
      @GetMapping
     public List<Subcription> getAll(){
-         return SubcriptionService.getAll();
+         return subcriptionService.getAll();
      }
      @GetMapping(value = "/{id}")
      public Subcription get (@PathVariable(name = "id")Long id ){
-         return SubcriptionService.get(id);
+         return subcriptionService.get(id);
      }
 
 }

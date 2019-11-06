@@ -13,18 +13,18 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/billingaccounts")
 public class BillingAccountController {
-    private final BillingAccountService BillingAccountService;
+    private final BillingAccountService billingAccountService;
 
     @Autowired
-    public BillingAccountController (BillingAccountService BillingAccountService){
-        this.BillingAccountService = BillingAccountService;
+    public BillingAccountController (BillingAccountService billingAccountService){
+        this.billingAccountService = billingAccountService;
     }
     @GetMapping
     public List<BillingAccount> getAll(){
-        return BillingAccountService.getAll();
+        return billingAccountService.getAll();
     }
     @GetMapping(value = "/{id}")
     public BillingAccount get (@PathVariable(name = "id") Long id){
-        return BillingAccountService.get(id);
+        return billingAccountService.get(id);
     }
 }
