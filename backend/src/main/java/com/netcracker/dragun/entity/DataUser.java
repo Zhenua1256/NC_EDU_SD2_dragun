@@ -1,10 +1,15 @@
 package com.netcracker.dragun.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
+@Builder
+@ToString
 @Entity
 @Table(name = "datausers")
 public class DataUser {

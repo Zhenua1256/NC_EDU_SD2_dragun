@@ -1,21 +1,30 @@
 package com.netcracker.dragun.entity;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
+@ToString
 @Entity
-@Table(name = "users" )
+@Table(name = "users")
+@Builder
 public class User {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-@Column(name = "email")
+    @Column(name = "email")
     private String email;
-@OneToOne
-@JoinColumn(name = "datausers")
-    private DataUser datausers;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "last_name")
+    private String lastName;
+    @OneToOne
+    @JoinColumn(name = "data_user")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private DataUser dataUser;
 }

@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS datausers CASCADE;
 DROP TABLE IF EXISTS subscriptions CASCADE;
-DROP TABLE IF EXISTS subscriptionTypes CASCADE;
+DROP TABLE IF EXISTS company CASCADE;
 DROP TABLE IF EXISTS billingAccounts CASCADE;
 DROP TABLE IF EXISTS subscriptionsList CASCADE;
 
@@ -9,7 +9,7 @@ DROP SEQUENCE IF EXISTS users_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS datausers_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS subscriptions_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS billingAccounts_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS subscriptionTypes_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS company_id_seq CASCADE;
 
 CREATE SEQUENCE users_id_seq;
 
@@ -31,16 +31,18 @@ CREATE SEQUENCE billingAccounts_id_seq;
 ALTER SEQUENCE billingAccounts_id_seq
     OWNER TO spring;
 
-CREATE SEQUENCE subscriptionTypes_id_seq;
+CREATE SEQUENCE company_id_seq;
 
-ALTER SEQUENCE subscriptionTypes_id_seq
+ALTER SEQUENCE company_id_seq
     OWNER TO spring;
 
 CREATE TABLE users
 (
     id       bigint DEFAULT nextval('users_id_seq'::regclass),
     email    character varying(255),
-    datausers bigint,
+    name     character varying(255),
+    last_name character varying(255),
+    data_user bigint,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 )
     WITH (
@@ -98,11 +100,15 @@ CREATE TABLE billingAccounts
     )
     TABLESPACE pg_default;
 
-CREATE TABLE subscriptiontypes
+CREATE TABLE company
 (
-    id          bigint DEFAULT nextval('subscriptionTypes_id_seq'::regclass),
-    subscription_type character varying(255),
-    CONSTRAINT subscriptionTypes_pkey PRIMARY KEY (id)
+    id          bigint DEFAULT nextval('company_id_seq'::regclass),
+    name character varying(255),
+    director character varying(255),
+    contact_number character varying(255),
+    legal_addres character varying(255),
+    data_user bigint,
+    CONSTRAINT company_pkey PRIMARY KEY (id)
 )
     WITH (
         OIDS = FALSE
@@ -110,7 +116,7 @@ CREATE TABLE subscriptiontypes
     TABLESPACE pg_default;
 
 ALTER TABLE users
-    ADD CONSTRAINT fk_datausers FOREIGN KEY (datausers)
+    ADD CONSTRAINT fk_datausers FOREIGN KEY (data_user)
         REFERENCES datausers (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE;
@@ -131,8 +137,8 @@ ALTER TABLE subscriptionsList
         ON UPDATE CASCADE
            ON DELETE CASCADE;
 
-ALTER TABLE subscriptions
-    ADD CONSTRAINT fk_type FOREIGN KEY (type)
-        REFERENCES subscriptionTypes (id) MATCH SIMPLE
+ALTER TABLE company
+    ADD CONSTRAINT fk_datausers FOREIGN KEY (data_user)
+        REFERENCES company (id) MATCH SIMPLE
         ON UPDATE CASCADE
-ON DELETE CASCADE;
+        ON DELETE CASCADE;

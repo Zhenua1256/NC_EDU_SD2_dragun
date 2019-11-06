@@ -11,16 +11,25 @@ import java.util.List;
 
 public class UserService {
 
-    private final UserRepository UserRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserService (UserRepository UserRepository) {
-        this.UserRepository = UserRepository;
+        this.userRepository = UserRepository;
     }
     public User get(Long id) {
-        return UserRepository.findById(id).get();
+        return userRepository.findById(id).get();
     }
+
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
+
+
     public List<User> getAll() {
-        return UserRepository.findAll();
+        return userRepository.findAll();
     }
 }

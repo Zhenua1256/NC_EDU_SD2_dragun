@@ -9,16 +9,16 @@ import java.util.List;
 
 @Service
 public class BillingAccountService {
-    private final BillingAccountRepository BillingAccountRepository;
+    private final BillingAccountRepository billingAccountRepository;
 
     @Autowired
-    public BillingAccountService (BillingAccountRepository BillingAccountRepository){
-        this.BillingAccountRepository = BillingAccountRepository;
+    public BillingAccountService (BillingAccountRepository billingAccountRepository){
+        this.billingAccountRepository = billingAccountRepository;
     }
     public BillingAccount get(Long id) {
-        return BillingAccountRepository.findById(id).get();
+        return billingAccountRepository.findById(id).get();
     }
     public List<BillingAccount> getAll(){
-        return BillingAccountRepository.findAll();
+        return billingAccountRepository.findAll();
     }
 }
