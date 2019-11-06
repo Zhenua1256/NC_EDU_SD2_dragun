@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class BillingAccount {
     private Long id;
-    private Long user_id;
+    private Long userId;
     private Long balance;
 }

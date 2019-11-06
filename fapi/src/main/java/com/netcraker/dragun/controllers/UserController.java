@@ -35,7 +35,6 @@ public class UserController {
                         @PathVariable(name = "id") Long id) {
         userService.update(user, id);
     }
-
     @DeleteMapping("/{id}")
     public void create(@PathVariable(name = "id") Long id) {
         userService.delete(id);
