@@ -139,6 +139,6 @@ ALTER TABLE subscriptionsList
 
 ALTER TABLE company
     ADD CONSTRAINT fk_datausers FOREIGN KEY (data_user)
-        REFERENCES company (id) MATCH SIMPLE
+        REFERENCES datausers (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE;
