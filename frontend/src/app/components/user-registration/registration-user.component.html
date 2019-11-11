@@ -1,0 +1,26 @@
+<div class="eudr-registration-user__container _small">
+  <button type="button" class="btn btn-light" routerLink="/registration/company"> Компания </button>
+  <div class="form-group ">
+    <label for="inputEmail4">Почта</label>
+    <input type="email" class="form-control" id="inputEmail4" placeholder="почта" [(ngModel)]="currentUser.email">
+  </div>
+  <div class="form-group ">
+    <label for="inputName4">Имя</label>
+    <input type="name" class="form-control" id="inputName4" placeholder="Имя" [(ngModel)]="currentUser.name">
+  </div>
+  <div class="form-group ">
+    <label for="inputLastName4">Фамилия</label>
+    <input type="lastname" class="form-control" id="inputLastName4" placeholder="Фамилия"
+           [(ngModel)]="currentUser.lastName">
+  </div>
+  <div class="form-group ">
+    <label for="inputLogin4">Логин</label>
+    <input type="email" class="form-control" id="inputLogin4" placeholder="логин" [(ngModel)]="currentUser.login">
+  </div>
+  <div class="form-group ">
+    <label for="inputName4">Пароль</label>
+    <input type="name" class="form-control" id="inputPassword4" placeholder="Пароль"
+           [(ngModel)]="currentUser.password">
+  </div>
+  <button type="button" class="btn btn-light" (click)="add()" routerLink="/home"> Зарегистрироваться</button>
+</div>
