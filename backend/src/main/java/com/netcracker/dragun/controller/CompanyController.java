@@ -1,4 +1,6 @@
 package com.netcracker.dragun.controller;
+import com.netcracker.dragun.dto.CompanyDto;
+import com.netcracker.dragun.dto.Converter;
 import com.netcracker.dragun.entity.Company;
 import com.netcracker.dragun.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,9 @@ public class CompanyController {
     }
 
     @PostMapping
-    public ResponseEntity createUser(@RequestBody Company company) {
-        companyService.save(company);
-        return ResponseEntity.accepted().build();
+    public CompanyDto createCompany(@RequestBody CompanyDto companyDto) {
+        Company company = companyService.save(Converter.fromDto(companyDto));
+        return companyDto;
     }
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUserbyId(@PathVariable Long id) {
