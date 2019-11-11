@@ -1,0 +1,30 @@
+<div class="eudr-registration-company__container _small">
+  <button type="button" class="btn btn-light"  routerLink="/registration/user"> Пользователь </button>
+  <div class="form-group ">
+    <label for="inputName4">Название компании</label>
+    <input type="name" class="form-control" id="inputName4" placeholder="Название компании" [(ngModel)]="currentCompany.name">
+  </div>
+  <div class="form-group ">
+    <label for="inputDirectorName4">ФИО Директора компании</label>
+    <input type="directorname" class="form-control" id="inputDirectorName4" placeholder="ФИО" [(ngModel)]="currentCompany.directorName">
+  </div>
+  <div class="form-group ">
+    <label for="inputContuctNumber4">Контактный телефон</label>
+    <input type="ContuctNumber" class="form-control" id="inputContuctNumber4" placeholder="номер"
+           [(ngModel)]="currentCompany.contactNumber">
+  </div>
+  <div class="form-group ">
+    <label for="inputLegaladdres4">Юридический адрес компании </label>
+    <input type="legaladdres" class="form-control" id="inputLegaladdres4" placeholder="Область Город Улица" [(ngModel)]="currentCompany.legalAddres">
+  </div>
+  <div class="form-group ">
+    <label for="inputLogin4">Логин</label>
+    <input type="email" class="form-control" id="inputLogin4" placeholder="логин" [(ngModel)]="currentCompany.login">
+  </div>
+  <div class="form-group ">
+    <label for="inputName4">Пароль</label>
+    <input type="name" class="form-control" id="inputPassword4" placeholder="пароль"
+           [(ngModel)]="currentCompany.password">
+  </div>
+  <button type="button" class="btn btn-light" (click)="add()" routerLink="/home"> Зарегистрироваться</button>
+</div>
