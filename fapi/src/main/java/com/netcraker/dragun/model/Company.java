@@ -7,7 +7,7 @@ public class Company {
     private Long id;
     private String name;
     private String directorName;
-    private Long contactNumber;
+    private String contactNumber;
     private String legalAddres;
     private String login;
     private String password;
