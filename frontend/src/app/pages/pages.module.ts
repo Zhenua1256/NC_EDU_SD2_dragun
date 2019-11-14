@@ -9,24 +9,31 @@ import {HomePageComponent} from './home-page/home-page.component';
 import {HomeModule} from '../components/home/home.module';
 import {RegistrationCompanyModule} from '../components/company-registration/registration-company.module';
 import {RegistrationCompanyPageComponent} from './registration-company-page/registration-company-page.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material';
+import {RegistrationModule} from '../registration/registration.module';
+import {CreateBillingAccountComponent} from './create-billing-account-page/create-billing-account.component';
 
 @NgModule({
   declarations: [
     RegistrationUserPageComponent,
     HomePageComponent,
-    RegistrationCompanyPageComponent
+    RegistrationCompanyPageComponent,
+    CreateBillingAccountComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
     HttpClientModule,
     RegistrationUserModule,
     HomeModule,
-    RegistrationCompanyModule
+    RegistrationCompanyModule,
+    RegistrationModule,
   ],
-  exports: [RegistrationUserPageComponent, RegistrationCompanyPageComponent, HomePageComponent]
+  exports: [RegistrationUserPageComponent, RegistrationCompanyPageComponent, HomePageComponent, CreateBillingAccountComponent]
 })
 export class PagesModule {
 }
