@@ -1,3 +1,61 @@
+<mat-tab-group>
+  <mat-tab label = "Компания">
+    <div class="eudr-registration-company__container _small">
+      <div class="form-group ">
+        <label for="inputName4">Название компании</label>
+        <input type="name" class="form-control" id="inputNameCompany4" placeholder="Название компании" [(ngModel)]="currentCompany.name">
+      </div>
+      <div class="form-group ">
+        <label for="inputDirectorName4">ФИО Директора компании</label>
+        <input type="directorname" class="form-control" id="inputDirectorName4" placeholder="ФИО" [(ngModel)]="currentCompany.directorName">
+      </div>
+      <div class="form-group ">
+        <label for="inputContuctNumber4">Контактный телефон</label>
+        <input type="ContuctNumber" class="form-control" id="inputContuctNumber4" placeholder="номер"
+               [(ngModel)]="currentCompany.contactNumber">
+      </div>
+      <div class="form-group ">
+        <label for="inputLegaladdres4">Юридический адрес компании </label>
+        <input type="legaladdres" class="form-control" id="inputLegaladdres4" placeholder="Область Город Улица" [(ngModel)]="currentCompany.legalAddres">
+      </div>
+      <div class="form-group ">
+        <label for="inputLogin4">Логин</label>
+        <input type="email" class="form-control" id="inputLoginCompany4" placeholder="логин" [(ngModel)]="currentCompany.login">
+      </div>
+      <div class="form-group ">
+        <label for="inputName4">Пароль</label>
+        <input type="name" class="form-control" id="inputPasswordCompany4" placeholder="пароль"
+               [(ngModel)]="currentCompany.password">
+      </div>
+      <button type="button" class="btn btn-light" (click)="addCompany()" routerLink="/home"> Зарегистрироваться</button>
+    </div>
+  </mat-tab>
+  <mat-tab label = "Пользователь">
+    <div class="eudr-registration-user__container _small">
+     <div class="form-group ">
+        <label for="inputEmail4">Почта</label>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="почта" [(ngModel)]="currentUser.email">
+      </div>
+      <div class="form-group ">
+        <label for="inputName4">Имя</label>
+        <input type="name" class="form-control" id="inputName4" placeholder="Имя" [(ngModel)]="currentUser.name">
+      </div>
+      <div class="form-group ">
+        <label for="inputLastName4">Фамилия</label>
+        <input type="lastname" class="form-control" id="inputLastName4" placeholder="Фамилия"
+               [(ngModel)]="currentUser.lastName">
+      </div>
+      <div class="form-group ">
+        <label for="inputLogin4">Логин</label>
+        <input type="email" class="form-control" id="inputLogin4" placeholder="логин" [(ngModel)]="currentUser.login">
+      </div>
+      <div class="form-group ">
+        <label for="inputName4">Пароль</label>
+        <input type="name" class="form-control" id="inputPassword4" placeholder="Пароль"
+               [(ngModel)]="currentUser.password">
+      </div>
+      <button type="button" class="btn btn-light" (click)="addUser()" routerLink="/home"> Зарегистрироваться</button>
+    </div>
 
-<button type="button" class="btn btn-light"  routerLink="/registration/user"> Пользователь </button>
-<button type="button" class="btn btn-light" routerLink="/registration/company"> Компания </button>
+  </mat-tab>
+</mat-tab-group>
