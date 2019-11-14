@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS datausers CASCADE;
-DROP TABLE IF EXISTS subscriptions CASCADE;
+DROP TABLE IF EXISTS product CASCADE;
 DROP TABLE IF EXISTS company CASCADE;
 DROP TABLE IF EXISTS billingAccounts CASCADE;
-DROP TABLE IF EXISTS subscriptionsList CASCADE;
+DROP TABLE IF EXISTS subscription CASCADE;
 
 DROP SEQUENCE IF EXISTS users_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS datausers_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS subscriptions_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS product_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS billingAccounts_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS company_id_seq CASCADE;
 
@@ -21,9 +21,9 @@ CREATE SEQUENCE datausers_id_seq;
 ALTER SEQUENCE datausers_id_seq
     OWNER TO spring;
 
-CREATE SEQUENCE subscriptions_id_seq;
+CREATE SEQUENCE product_id_seq;
 
-ALTER SEQUENCE subscriptions_id_seq
+ALTER SEQUENCE product_id_seq
     OWNER TO spring;
 
 CREATE SEQUENCE billingAccounts_id_seq;
@@ -64,23 +64,24 @@ CREATE TABLE datausers
     )
     TABLESPACE pg_default;
 
-CREATE TABLE subscriptions
+CREATE TABLE product
 (
-    id                 bigint DEFAULT nextval('subscriptions_id_seq'::regclass),
+    id                 bigint DEFAULT nextval('product_id_seq'::regclass),
     name       character varying(255),
     price            bigint,
-    type bigint,
-    period bigint,
-    CONSTRAINT subscriptions_pkey PRIMARY KEY (id)
+    section bigint,
+
+    CONSTRAINT product_pkey PRIMARY KEY (id)
 )
     WITH (
         OIDS = FALSE
     )
     TABLESPACE pg_default;
 
-CREATE TABLE subscriptionsList
+CREATE TABLE subscription
 (
-    subscription_id bigint,
+    product_id bigint,
+    period bigint,
     user_id bigint
 )
     WITH (
@@ -92,6 +93,7 @@ CREATE TABLE billingAccounts
 (
     id          bigint DEFAULT nextval('billingAccounts_id_seq'::regclass),
     user_id bigint,
+    card_number bigint,
     balance bigint,
     CONSTRAINT billingAccounts_pkey PRIMARY KEY (id)
 )
@@ -127,9 +129,9 @@ ALTER TABLE billingAccounts
         ON UPDATE CASCADE
         ON DELETE CASCADE;
 
-ALTER TABLE subscriptionsList
-    ADD CONSTRAINT fk_subscription_id FOREIGN KEY (subscription_id)
-        REFERENCES subscriptions (id) MATCH SIMPLE
+ALTER TABLE subscription
+    ADD CONSTRAINT fk_product_id FOREIGN KEY (product_id)
+        REFERENCES product (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
     ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id)

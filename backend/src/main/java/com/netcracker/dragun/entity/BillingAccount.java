@@ -12,6 +12,8 @@ public class BillingAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(name = "card_number")
+    private Long cardNumber;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userId;

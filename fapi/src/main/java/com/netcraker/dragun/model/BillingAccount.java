@@ -7,4 +7,5 @@ public class BillingAccount {
     private Long id;
     private Long userId;
     private Long balance;
+    private Long cardNumber;
 }
