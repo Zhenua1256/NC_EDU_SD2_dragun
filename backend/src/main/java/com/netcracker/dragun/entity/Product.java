@@ -5,8 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 @Data
 @Entity
-@Table(name = "subcriptions")
-public class Subcription {
+@Table(name = "service")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -15,8 +15,6 @@ public class Subcription {
     private String name;
     @Column(name = "price")
     private Long price;
-    @Column(name = "type")
-    private String type;
-    @Column(name = "period")
-    private Long period;
+    @Column(name = "section")
+    private String section;
 }
