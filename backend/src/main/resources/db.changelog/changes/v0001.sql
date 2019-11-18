@@ -10,6 +10,7 @@ DROP SEQUENCE IF EXISTS datausers_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS product_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS billingAccounts_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS company_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS subscription_id_seq CASCADE;
 
 CREATE SEQUENCE users_id_seq;
 
@@ -29,6 +30,11 @@ ALTER SEQUENCE product_id_seq
 CREATE SEQUENCE billingAccounts_id_seq;
 
 ALTER SEQUENCE billingAccounts_id_seq
+    OWNER TO spring;
+
+CREATE SEQUENCE subscription_id_seq;
+
+ALTER SEQUENCE subscription_id_seq
     OWNER TO spring;
 
 CREATE SEQUENCE company_id_seq;

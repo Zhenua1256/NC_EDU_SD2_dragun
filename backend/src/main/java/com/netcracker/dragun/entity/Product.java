@@ -3,9 +3,10 @@ package com.netcracker.dragun.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+
 @Data
 @Entity
-@Table(name = "service")
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
