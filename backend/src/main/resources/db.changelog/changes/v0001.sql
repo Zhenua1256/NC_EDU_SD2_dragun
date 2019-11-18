@@ -95,6 +95,8 @@ CREATE TABLE billingAccounts
     user_id bigint,
     card_number bigint,
     balance bigint,
+    cvv bigint,
+    owner character varying(255),
     CONSTRAINT billingAccounts_pkey PRIMARY KEY (id)
 )
     WITH (

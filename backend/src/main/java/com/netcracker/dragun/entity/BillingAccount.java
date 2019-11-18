@@ -12,6 +12,10 @@ public class BillingAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(name = "cvv")
+    private Long cvv;
+    @Column(name = "owner")
+    private String owner;
     @Column(name = "card_number")
     private Long cardNumber;
     @ManyToOne
