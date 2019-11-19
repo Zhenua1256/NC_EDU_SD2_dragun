@@ -13,8 +13,8 @@ export class BillingAccountService {
     return this.http.get<BillingAccountModel[]>('/api/v1/billingaccount');
   }
 
-  saveBillingAccount(billingAccount: BillingAccountModel): Observable<BillingAccountModel> {
-    return this.http.post<BillingAccountModel>('/api/v1/billingaccount', billingAccount);
+  saveBillingAccount(billingAccount: BillingAccountModel) {
+    return this.http.post('/api/v1/billingaccount', billingAccount);
   }
 
   deleteBillingAccount(billingAccountId: string): Observable<void> {

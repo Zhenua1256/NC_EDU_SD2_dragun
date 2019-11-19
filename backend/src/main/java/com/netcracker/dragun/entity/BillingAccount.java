@@ -20,7 +20,7 @@ public class BillingAccount {
     private Long cardNumber;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     @Column(name = "balance")
     private Long balance;
 }

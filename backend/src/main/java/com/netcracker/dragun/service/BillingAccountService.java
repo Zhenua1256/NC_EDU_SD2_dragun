@@ -15,8 +15,13 @@ public class BillingAccountService {
     public BillingAccountService (BillingAccountRepository billingAccountRepository){
         this.billingAccountRepository = billingAccountRepository;
     }
-    public BillingAccount get(Long id) {
+
+    public BillingAccount get(Long id)
+    {
         return billingAccountRepository.findById(id).get();
+    }
+    public BillingAccount save (BillingAccount billingAccount) {
+        return billingAccountRepository.save(billingAccount);
     }
     public List<BillingAccount> getAll(){
         return billingAccountRepository.findAll();

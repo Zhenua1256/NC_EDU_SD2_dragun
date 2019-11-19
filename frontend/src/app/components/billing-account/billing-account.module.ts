@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {BillingAccountService} from '../../service/Billing-Account-Service';
 import {BillingAccountComponent} from './billing-account.component';
@@ -16,7 +16,8 @@ import {BillingAccountComponent} from './billing-account.component';
     BrowserModule,
     RouterModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
 
   providers: [BillingAccountService],

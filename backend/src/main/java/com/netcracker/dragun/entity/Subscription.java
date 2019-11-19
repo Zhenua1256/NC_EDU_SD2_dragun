@@ -15,7 +15,7 @@ public class Subscription {
     private Product serviceId;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
     @Column(name = "period")
     private Long period;
 }
