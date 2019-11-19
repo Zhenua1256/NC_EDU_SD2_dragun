@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserModel} from '../users/model/user.model';
 
 @Component({
-  selector: 'app-company',
+  selector: 'app-billing-account',
   templateUrl: './billing-account.component.html',
   styleUrls: ['./billing-account.component.css']
 })
