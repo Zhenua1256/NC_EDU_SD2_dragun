@@ -75,7 +75,7 @@ CREATE TABLE product
     id                 bigint DEFAULT nextval('product_id_seq'::regclass),
     name       character varying(255),
     price            bigint,
-    section bigint,
+    section character varying(255),
 
     CONSTRAINT product_pkey PRIMARY KEY (id)
 )

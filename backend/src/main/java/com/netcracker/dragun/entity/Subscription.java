@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Table(name = "subscription")
 public class Subscription {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     Long id;
     @ManyToOne
     @JoinColumn(name = "product_id")
