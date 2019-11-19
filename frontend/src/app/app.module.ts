@@ -9,22 +9,22 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {RegistrationPageComponent} from './pages/registration-page/registration-page.component';
-import {CreateBillingAccountComponent} from './pages/create-billing-account-page/create-billing-account.component';
 import {RegistrationModule} from './components/registration/registration.module';
-import { RegistrationServicePageComponent } from './pages/registration-service-page/registration-service-page.component';
-import {BillingAccountComponent} from './components/billing-account/billing-account.component';
 import {BillingAccountModule} from './components/billing-account/billing-account.module';
-import { ProductComponent } from './components/product/product.component';
-import { RegistrationProductComponent } from './components/registration-product/registration-product.component';
 import { RegistrationProductPageComponent } from './pages/registration-product-page/registration-product-page.component';
+import {RegistrationProductModule} from './components/registration-product/registration-product.module';
+import {CreateBillingAccountComponent} from './pages/create-billing-account-page/create-billing-account.component';
+import { HomeProductComponent } from './components/home-product/home-product.component';
+import { HomeProductPageComponent } from './pages/home-product-page/home-product-page.component';
 
 
 const routes: Routes = [
   {path: '',  redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home' , component: HomePageComponent},
+  {path: 'login' , component: HomePageComponent},
   {path: 'registration', component: RegistrationPageComponent},
-  /*{path: 'registration_service', component: RegistrationServiceComponent},*/
-  {path: 'create_ba', component: BillingAccountComponent},
+  {path: 'create-ba', component: CreateBillingAccountComponent},
+  {path: 'registration-service', component: RegistrationProductPageComponent},
+  {path: 'home', component: HomeProductPageComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -33,10 +33,9 @@ const routes: Routes = [
     AppComponent,
     NotFoundComponent,
     RegistrationPageComponent,
-    RegistrationServicePageComponent,
-    ProductComponent,
-    RegistrationProductComponent,
-    RegistrationProductPageComponent
+    RegistrationProductPageComponent,
+    HomeProductComponent,
+    HomeProductPageComponent
   ],
   imports: [
     UserModule,
@@ -46,6 +45,7 @@ const routes: Routes = [
     PagesModule,
     RouterModule.forRoot(routes),
     RegistrationModule,
+    RegistrationProductModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
