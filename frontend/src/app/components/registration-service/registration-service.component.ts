@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+/*
+import {Component, OnInit} from '@angular/core';
 import {CompanyService} from '../../service/Company-Service';
-import {CompanyModel} from './model/company.model';
+import {CompanyModel} from '../company/model/company.model';
 
 @Component({
-  selector: 'app-company',
-  templateUrl: './company.component.html',
-  styleUrls: ['./company.component.css']
+  selector: 'app-reg-service',
+  templateUrl: './/registration-service.component.html',
+  styleUrls: ['./registration-service.component.css']
 })
-export class CompanyComponent implements OnInit {
-
+export class RegistrationServiceComponent implements OnInit {
   company: CompanyModel[] = [];
 
   public currentCompany: CompanyModel = {};
-  constructor(private companyService: CompanyService) {
+  constructor(private companyService: CompanyService ) {
+
   }
 
   ngOnInit(): void {
+
   }
 
   public add(company?: CompanyModel): void {
@@ -28,3 +30,4 @@ export class CompanyComponent implements OnInit {
 
   }
 }
+*/
