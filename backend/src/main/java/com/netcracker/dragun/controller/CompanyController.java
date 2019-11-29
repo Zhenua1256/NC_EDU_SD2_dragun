@@ -1,4 +1,5 @@
 package com.netcracker.dragun.controller;
+
 import com.netcracker.dragun.dto.CompanyDto;
 import com.netcracker.dragun.dto.Converter;
 import com.netcracker.dragun.entity.Company;
@@ -29,11 +30,13 @@ public class CompanyController {
         Company company = companyService.save(Converter.fromDto(companyDto));
         return companyDto;
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUserbyId(@PathVariable Long id) {
         companyService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
     @GetMapping(value = "/{id}")
     public Company get(@PathVariable(name = "id") Long id) {
         return companyService.get(id);

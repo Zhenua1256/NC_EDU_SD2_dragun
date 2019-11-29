@@ -16,12 +16,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "email")
-    private String email;
     @Column(name = "name")
     private String name;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "role")
+    private String role;
     @OneToOne
     @JoinColumn(name = "data_user")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)

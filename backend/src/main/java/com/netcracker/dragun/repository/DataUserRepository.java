@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DataUserRepository extends JpaRepository<DataUser, Long> {
+    DataUser findDataUserByLogin (String login);
 }

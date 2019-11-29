@@ -1,9 +1,9 @@
 package com.netcracker.dragun.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+        import lombok.AllArgsConstructor;
+        import lombok.Builder;
+        import lombok.Data;
+        import lombok.ToString;
 
 @AllArgsConstructor
 @Data
@@ -12,7 +12,6 @@ import lombok.ToString;
 public class UserDto {
     private Long id;
     private String name;
-    private String email;
     private String lastName;
     private String login;
     private String password;

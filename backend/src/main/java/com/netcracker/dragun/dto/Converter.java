@@ -11,39 +11,35 @@ public class Converter {
         DataUser dataUser = DataUser.builder()
                 .login(userDto.getLogin())
                 .password(userDto.getPassword())
-                .role(userDto.getRole())
                 .build();
 
         User user = User.builder()
                 .dataUser(dataUser)
-                .email(userDto.getEmail())
+                .role(userDto.getRole())
                 .name(userDto.getName())
                 .lastName(userDto.getLastName())
                 .build();
         return user;
     }
-    public static UserDto toDto(User user, DataUser dataUser) {
+    public static UserDto toDto(User user) {
 
         return UserDto.builder()
-                .login(dataUser.getLogin())
-                .password(dataUser.getPassword())
-                .role(dataUser.getRole())
-                .email(user.getEmail())
+                .login(user.getDataUser().getLogin())
+                .password(user.getDataUser().getPassword())
+                .role(user.getRole())
                 .lastName(user.getLastName())
                 .name(user.getName())
                 .build();
-
-
     }
     public static Company fromDto(CompanyDto companyDto){
         DataUser dataUser = DataUser.builder()
                 .login(companyDto.getLogin())
                 .password(companyDto.getPassword())
-                .role(companyDto.getRole())
                 .build();
 
         Company company = Company.builder()
                 .dataUser(dataUser)
+                .role(companyDto.getRole())
                 .contactNumber(companyDto.getContactNumber())
                 .directorName(companyDto.getDirectorName())
                 .legalAddres(companyDto.getLegalAddres())
@@ -54,7 +50,7 @@ public class Converter {
         return CompanyDto.builder()
                 .login(dataUser.getLogin())
                 .password(dataUser.getPassword())
-                .role(dataUser.getRole())
+                .role(company.getRole())
                 .name(company.getName())
                 .contactNumber(company.getContactNumber())
                 .directorName(company.getDirectorName())

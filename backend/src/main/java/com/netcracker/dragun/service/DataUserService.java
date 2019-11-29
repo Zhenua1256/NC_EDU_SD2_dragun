@@ -15,9 +15,12 @@ public class DataUserService {
     public DataUserService(DataUserRepository DataUserRepository) {
         this.DataUserRepository = DataUserRepository;
     }
+
     public DataUser get(Long id) {
         return DataUserRepository.findById(id).get();
     }
+
+
     public List<DataUser> getAll() {
         return DataUserRepository.findAll();
     }

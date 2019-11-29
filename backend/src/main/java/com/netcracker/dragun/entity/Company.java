@@ -24,6 +24,8 @@ public class Company {
     private String directorName;
     @Column(name = "contact_number")
     private String contactNumber;
+    @Column(name = "role")
+    private String role;
     @Column (name = "legal_addres")
     private String legalAddres;
     @OneToOne

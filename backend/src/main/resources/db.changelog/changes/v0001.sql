@@ -45,9 +45,9 @@ ALTER SEQUENCE company_id_seq
 CREATE TABLE users
 (
     id       bigint DEFAULT nextval('users_id_seq'::regclass),
-    email    character varying(255),
     name     character varying(255),
     last_name character varying(255),
+    role     character varying(255),
     data_user bigint,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 )
@@ -62,7 +62,6 @@ CREATE TABLE datausers
     id       bigint DEFAULT nextval('datausers_id_seq'::regclass),
     login    character varying(255),
     password     character varying(255),
-    role     character varying(255),
     CONSTRAINT datausers_pkey PRIMARY KEY (id)
 )
     WITH (
@@ -76,6 +75,7 @@ CREATE TABLE product
     name       character varying(255),
     price            bigint,
     section character varying(255),
+    description character varying(255),
 
     CONSTRAINT product_pkey PRIMARY KEY (id)
 )
@@ -117,6 +117,7 @@ CREATE TABLE company
     director character varying(255),
     contact_number character varying(255),
     legal_addres character varying(255),
+    role     character varying(255),
     data_user bigint,
     CONSTRAINT company_pkey PRIMARY KEY (id)
 )
