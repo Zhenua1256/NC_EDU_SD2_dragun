@@ -16,6 +16,14 @@ import {RegistrationProductModule} from './components/registration-product/regis
 import {CreateBillingAccountComponent} from './pages/create-billing-account-page/create-billing-account.component';
 import { HomeProductComponent } from './components/home-product/home-product.component';
 import { HomeProductPageComponent } from './pages/home-product-page/home-product-page.component';
+import { DetailsComponent } from './components/product/details/details.component';
+import { DetailsProductPageComponent } from './pages/details-product-page/details-product-page.component';
+import { HeaderComponent } from './components/header/header.component';
+import { PersonalUserPageComponent } from './pages/personal-user-page/personal-user-page.component';
+import { PersonalAreaComponent } from './components/users/personal-area/personal-area.component';
+import {ApiInterseptor} from './interseptors/api-interseptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HeaderService} from './service/header.service';
 
 
 const routes: Routes = [
@@ -25,7 +33,8 @@ const routes: Routes = [
   {path: 'create-ba', component: CreateBillingAccountComponent},
   {path: 'registration-service', component: RegistrationProductPageComponent},
   {path: 'home', component: HomeProductPageComponent},
-  {path: '**', component: NotFoundComponent}
+  {path: 'personal', component: PersonalUserPageComponent},
+  {path: '**', component: NotFoundComponent},
 ];
 
 @NgModule({
@@ -35,7 +44,12 @@ const routes: Routes = [
     RegistrationPageComponent,
     RegistrationProductPageComponent,
     HomeProductComponent,
-    HomeProductPageComponent
+    HomeProductPageComponent,
+    DetailsComponent,
+    DetailsProductPageComponent,
+    HeaderComponent,
+    PersonalUserPageComponent,
+    PersonalAreaComponent
   ],
   imports: [
     UserModule,
@@ -47,7 +61,12 @@ const routes: Routes = [
     RegistrationModule,
     RegistrationProductModule,
   ],
-  providers: [],
+  providers: [ApiInterseptor, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ApiInterseptor,
+    multi: true
+  },
+  HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
