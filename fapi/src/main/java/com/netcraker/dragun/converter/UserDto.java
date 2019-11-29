@@ -1,16 +1,15 @@
-package com.netcraker.dragun.model;
+package com.netcraker.dragun.converter;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@AllArgsConstructor
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-// это юзерДто
-public class User {
+@ToString
+public class UserDto {
     private Long id;
     private String name;
     private String lastName;
