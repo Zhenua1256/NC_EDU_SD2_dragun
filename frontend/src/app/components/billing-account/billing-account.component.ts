@@ -23,14 +23,13 @@ export class BillingAccountComponent implements OnInit {
       cvv: ['', [Validators.required]]
     });
   }
-  /*parseFloat(this.newBillingAccountForm.controls.user.value);*/
 
   send() {
     this.newBillingAccount.cardNumber = this.newBillingAccountForm.controls.cardNumber.value;
     this.newBillingAccount.cvv = this.newBillingAccountForm.controls.cvv.value;
     this.newBillingAccount.owner = this.newBillingAccountForm.controls.owner.value;
-    this.newBillingAccount.user = new UserModel();
-    this.newBillingAccount.user.id = 1;
+    this.newBillingAccount.userId = +localStorage.getItem('userId');
+    console.log(this.newBillingAccount.userId);
     this.newBillingAccount.balance = 0;
     this.billingAccountService.saveBillingAccount(this.newBillingAccount).subscribe();
   }

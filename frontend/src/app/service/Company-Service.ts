@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CompanyModel} from '../components/company/model/company.model';
 import {Injectable} from '@angular/core';
+import {UserModel} from '../components/users/model/user.model';
 
 @Injectable()
 export class CompanyService {
@@ -18,5 +19,8 @@ export class CompanyService {
   }
   addCompany(company: CompanyModel): Observable<CompanyModel> {
     return this.http.post<CompanyModel>('/api/v1/companies' , company) ;
+  }
+  checkCompany(company: CompanyModel): Observable<CompanyModel> {
+    return this.http.post<CompanyModel>('/api/v1/companies' , company);
   }
 }
