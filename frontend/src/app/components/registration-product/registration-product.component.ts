@@ -26,6 +26,7 @@ export class RegistrationProductComponent implements OnInit {
     this.newProduct.price = this.newProductForm.controls.price.value;
     this.newProduct.name = this.newProductForm.controls.name.value;
     this.newProduct.section = this.newProductForm.controls.section.value;
+    this.newProduct.description = this.newProductForm.controls.description.value;
     this.productService.addProduct(this.newProduct).subscribe();
   }
 
