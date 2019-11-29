@@ -20,12 +20,12 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+   public ngOnInit(): void {
 
   }
 
   public addUser(user?: UserModel): void {
-
+    this.currentUser.role = "User";
     console.log(this.currentUser);
     this.userService.addUser(this.currentUser)
       .subscribe(savedUser => {
@@ -34,13 +34,11 @@ export class RegistrationComponent implements OnInit {
 
   }
   public addCompany(company?: CompanyModel): void {
-
+    this.currentCompany.role = "Company";
     console.log(this.currentCompany);
     this.companyService.addCompany(this.currentCompany)
       .subscribe(savedCompany => {
         this.company.push(savedCompany);
       });
-
   }
-
 }
