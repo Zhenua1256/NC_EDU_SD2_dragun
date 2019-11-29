@@ -11,22 +11,25 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/subcription")
 public class SubscriptionController {
 
-    private  final SubscriptionService subscriptionService;
+    private final SubscriptionService subscriptionService;
 
-     @Autowired
-     public SubscriptionController(SubscriptionService subscriptionService){
-         this.subscriptionService = subscriptionService;
-     }
-     @GetMapping
-     public List<Subscription> getAll(){
-         return subscriptionService.getAll();
-     }
-     @PostMapping
-     public Subscription createSubscription (@RequestBody Subscription subscription){
+    @Autowired
+    public SubscriptionController(SubscriptionService subscriptionService) {
+        this.subscriptionService = subscriptionService;
+    }
+
+    @GetMapping
+    public List<Subscription> getAll() {
+        return subscriptionService.getAll();
+    }
+
+    @PostMapping
+    public Subscription createSubscription(@RequestBody Subscription subscription) {
         return subscriptionService.save(subscription);
-     }
-     @GetMapping(value = "/{id}")
-     public Subscription get (@PathVariable(name = "id")Long id ){
-         return subscriptionService.get(id);
-     }
+    }
+
+    @GetMapping(value = "/{id}")
+    public Subscription get(@PathVariable(name = "id") Long id) {
+        return subscriptionService.get(id);
+    }
 }

@@ -13,13 +13,15 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @Autowired
-    public CompanyController (CompanyService companyService){
+    public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
+
     @GetMapping
     public List<Company> getAll() {
         return companyService.getAll();
     }
+
     @GetMapping("/{id}")
     public Company get(@PathVariable(name = "id") Long id) {
         return companyService.get(id);
@@ -35,6 +37,7 @@ public class CompanyController {
                        @PathVariable(name = "id") Long id) {
         companyService.update(company, id);
     }
+
     @DeleteMapping("/{id}")
     public void create(@PathVariable(name = "id") Long id) {
         companyService.delete(id);
