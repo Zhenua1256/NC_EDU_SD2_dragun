@@ -1,21 +1,23 @@
 package com.netcraker.dragun.controllers;
 
+import com.netcraker.dragun.converter.BillingAccountConverter;
 import com.netcraker.dragun.model.BillingAccount;
+import com.netcraker.dragun.model.BillingAccountDto;
 import com.netcraker.dragun.service.BillingAccountService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/billingaccount")
 public class BillingAccountController {
     private final BillingAccountService billingAccountService;
+    private final BillingAccountConverter billingAccountConverter;
 
-    @Autowired
-    public BillingAccountController (BillingAccountService billingAccountService){
-        this.billingAccountService = billingAccountService;
-    }
+
     @GetMapping
     public List<BillingAccount> getAll() {
         return billingAccountService.getAll();
@@ -25,8 +27,13 @@ public class BillingAccountController {
         return billingAccountService.get(id);
     }
 
-    @PostMapping
+    /*@PostMapping
     public BillingAccount create(@RequestBody BillingAccount billingAccount) {
+        BillingAccountDto billingAccountDto = billingAccountConverter.converterBillingAccountToDto(billingAccount);
+        return billingAccountConverter.converterBillingAccountFromDto(billingAccountService.create(billingAccountDto));
+    }*/
+    @PostMapping
+    public BillingAccount create(@RequestBody BillingAccount billingAccount){
         return billingAccountService.create(billingAccount);
     }
 

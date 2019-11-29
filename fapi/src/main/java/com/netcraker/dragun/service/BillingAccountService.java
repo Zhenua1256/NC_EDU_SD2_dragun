@@ -1,6 +1,7 @@
 package com.netcraker.dragun.service;
 
 import com.netcraker.dragun.model.BillingAccount;
+import com.netcraker.dragun.model.BillingAccountDto;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,9 +24,13 @@ public class BillingAccountService {
     public List<BillingAccount> getAll() {
         return Arrays.asList(restTemplate.getForObject(backendURL+"billingaccount/", BillingAccount[].class));
     }
+    /*public BillingAccountDto create(BillingAccountDto billingAccountDto) {
+        return restTemplate.postForObject(backendURL+"billingaccount/", billingAccountDto, BillingAccountDto.class);
+    }*/
     public BillingAccount create(BillingAccount billingAccount) {
         return restTemplate.postForObject(backendURL+"billingaccount/", billingAccount, BillingAccount.class);
     }
+
 
     public void update(BillingAccount billingAccount, Long id) {
         restTemplate.put(backendURL+"billingaccount/"+id, billingAccount);

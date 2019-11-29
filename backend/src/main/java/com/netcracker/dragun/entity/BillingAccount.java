@@ -18,9 +18,11 @@ public class BillingAccount {
     private String owner;
     @Column(name = "card_number")
     private Long cardNumber;
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user;*/
+    @Column(name = "user_id")
+    private Long userId;
     @Column(name = "balance")
     private Long balance;
 }
