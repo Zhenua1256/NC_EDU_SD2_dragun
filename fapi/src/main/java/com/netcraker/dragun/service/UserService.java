@@ -1,5 +1,6 @@
 package com.netcraker.dragun.service;
 
+import com.netcraker.dragun.model.Company;
 import com.netcraker.dragun.model.DataUser;
 import com.netcraker.dragun.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +42,9 @@ public class UserService implements UserDetailsService {
     public User getUserByLogin(String login) {
         return restTemplate.getForObject(backendURL + "users/login/" + login, User.class);
     }
-
-   /* public User createUser(User user) {
-      *//*  user.setPassword((bCryptPasswordEncoder.encode(user.getPassword())));*//*
-        return restTemplate.postForObject(backendURL + "users/", user, User.class);
-    }*/
+    public User getCompanyByLogin(String login) {
+        return restTemplate.getForObject(backendURL + "companies/login/" + login, User.class);
+    }
 
     public User create(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -69,8 +68,6 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getAuthority(user));
     }
 
-    //todo not change method param
-    // нужно забрать роль из датаюзера ( где угодно )
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));

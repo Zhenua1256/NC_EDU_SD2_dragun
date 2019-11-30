@@ -1,7 +1,9 @@
 package com.netcraker.dragun.controllers;
 
+import com.netcraker.dragun.model.Company;
 import com.netcraker.dragun.model.DataUser;
 import com.netcraker.dragun.model.User;
+import com.netcraker.dragun.service.CompanyService;
 import com.netcraker.dragun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,9 +18,11 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 public class UserController {
     private final UserService userService;
+    private final CompanyService companyService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, CompanyService companyService) {
+        this.companyService = companyService;
         this.userService = userService;
     }
 
@@ -32,21 +36,26 @@ public class UserController {
         return userService.get(id);
     }
 
-   /* @PostMapping
-    public User create(@RequestBody User user) {
-        return userService.createUser(user);
-    }*/
+
     @PostMapping
     public User createDataUser(@RequestBody User user) {
         return userService.create(user);
     }
 
-//    @PreAuthorize("isAuthenticated()")
+    //    @PreAuthorize("isAuthenticated()")
     @GetMapping("/current")
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserByLogin(((org.springframework.security.core.userdetails.User)authentication
+        User user = new User();
+        user =  userService.getUserByLogin(((org.springframework.security.core.userdetails.User) authentication
                 .getPrincipal()).getUsername());
+        if(user != null){
+            return user;
+        }
+        else {
+            return userService.getCompanyByLogin(((org.springframework.security.core.userdetails.User) authentication
+                    .getPrincipal()).getUsername());
+        }
     }
 
     @PutMapping("/{id}")

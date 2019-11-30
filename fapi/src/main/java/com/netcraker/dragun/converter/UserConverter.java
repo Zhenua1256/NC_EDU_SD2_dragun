@@ -18,7 +18,7 @@ public class UserConverter {
         return UserDto.builder()
                 .login(dataUser.getLogin())
                 .password(dataUser.getPassword())
-                .role(dataUser.getRole())
+                /*.role(dataUser.getRole())*/
                 .lastName(user.getLastName())
                 .name(user.getName())
                 .build();
