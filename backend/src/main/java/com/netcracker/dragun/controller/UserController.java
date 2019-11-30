@@ -2,8 +2,10 @@ package com.netcracker.dragun.controller;
 
 import com.netcracker.dragun.dto.Converter;
 import com.netcracker.dragun.dto.UserDto;
+import com.netcracker.dragun.entity.Company;
 import com.netcracker.dragun.entity.DataUser;
 import com.netcracker.dragun.entity.User;
+import com.netcracker.dragun.repository.CompanyRepository;
 import com.netcracker.dragun.repository.DataUserRepository;
 import com.netcracker.dragun.repository.UserRepository;
 import com.netcracker.dragun.service.UserService;
@@ -19,7 +21,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
-    private final DataUserRepository dataUserRepository;
+    private final CompanyRepository companyRepository;
 
     @GetMapping
     public Object getAll(Long id) {
@@ -34,8 +36,15 @@ public class UserController {
     @GetMapping("/login/{login}")
     private UserDto get (@PathVariable String login){
         User user =  userRepository.findUserByDataUser_Login(login);
+        if(user != null){
         UserDto userDto = Converter.toDto(user);
-      return  userDto;
+            return  userDto;
+        }
+        else {
+            Company company =  companyRepository.findCompanyByDataUser_Login(login);
+            UserDto userDto = Converter.CompanytoUserDto(company);
+            return userDto;
+        }
     }
 
     @PostMapping

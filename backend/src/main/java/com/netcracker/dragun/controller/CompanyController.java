@@ -2,7 +2,9 @@ package com.netcracker.dragun.controller;
 
 import com.netcracker.dragun.dto.CompanyDto;
 import com.netcracker.dragun.dto.Converter;
+import com.netcracker.dragun.dto.UserDto;
 import com.netcracker.dragun.entity.Company;
+import com.netcracker.dragun.repository.CompanyRepository;
 import com.netcracker.dragun.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +16,11 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/companies")
 public class CompanyController {
     private final CompanyService companyService;
+    private final CompanyRepository companyRepository;
 
     @Autowired
-    public CompanyController(CompanyService companyService) {
+    public CompanyController(CompanyService companyService, CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
         this.companyService = companyService;
     }
 
@@ -29,6 +33,12 @@ public class CompanyController {
     public CompanyDto createCompany(@RequestBody CompanyDto companyDto) {
         Company company = companyService.save(Converter.fromDto(companyDto));
         return companyDto;
+    }
+    @GetMapping("/login/{login}")
+    private UserDto get (@PathVariable String login){
+        Company company =  companyRepository.findCompanyByDataUser_Login(login);
+        UserDto userDto = Converter.CompanytoUserDto(company);
+        return  userDto;
     }
 
     @DeleteMapping("/{id}")

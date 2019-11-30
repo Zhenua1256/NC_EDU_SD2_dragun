@@ -31,6 +31,14 @@ public class Converter {
                 .name(user.getName())
                 .build();
     }
+    public static UserDto CompanytoUserDto(Company company) {
+
+        return UserDto.builder()
+                .login(company.getDataUser().getLogin())
+                .password(company.getDataUser().getPassword())
+                .role(company.getRole())
+                .build();
+    }
     public static Company fromDto(CompanyDto companyDto){
         DataUser dataUser = DataUser.builder()
                 .login(companyDto.getLogin())
