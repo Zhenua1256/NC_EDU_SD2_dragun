@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="home-product__card" >
+      <div class="pricingTable">
+        <h3 class="title">{{product.name}}</h3>
+        <div class="price-value">${{product.price}}
+                <span class="month">per month</span>
+        </div>
+        <span class="month">Description</span>
+          <div class="discription">
+                {{product.description}}
+          </div>
+        <button class="btn btn-outline-primary" type="submit" (click)="subscribeOnProduct()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</div>

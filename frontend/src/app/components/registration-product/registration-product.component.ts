@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../service/Product-service';
 import {ProductModel} from '../product/model/product.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registration-product',
@@ -12,14 +13,17 @@ export class RegistrationProductComponent implements OnInit {
   newProductForm: FormGroup;
   newProduct: ProductModel = new ProductModel();
 
-  constructor(private productService: ProductService, private  formbuilder: FormBuilder ) {
+  constructor(private productService: ProductService,
+              private  formbuilder: FormBuilder,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.newProductForm = this.formbuilder.group({
       price: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      section: ['', [Validators.required]]
+      section: ['', [Validators.required]],
+      description: ['', [Validators.required]]
     });
   }
   send() {
@@ -28,6 +32,7 @@ export class RegistrationProductComponent implements OnInit {
     this.newProduct.section = this.newProductForm.controls.section.value;
     this.newProduct.description = this.newProductForm.controls.description.value;
     this.productService.addProduct(this.newProduct).subscribe();
+    this.router.navigate(["/home"]);
   }
 
 }
