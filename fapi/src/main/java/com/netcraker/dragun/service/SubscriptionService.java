@@ -1,7 +1,6 @@
 package com.netcraker.dragun.service;
 
 import com.netcraker.dragun.model.Subscription;
-import com.netcraker.dragun.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;

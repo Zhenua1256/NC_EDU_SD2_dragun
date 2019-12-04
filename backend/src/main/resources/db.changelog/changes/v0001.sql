@@ -76,6 +76,7 @@ CREATE TABLE product
     price            bigint,
     section character varying(255),
     description character varying(255),
+    company_id bigint,
 
     CONSTRAINT product_pkey PRIMARY KEY (id)
 )
@@ -86,9 +87,12 @@ CREATE TABLE product
 
 CREATE TABLE subscription
 (
+    id                 bigint DEFAULT nextval('subscription_id_seq'::regclass),
     product_id bigint,
     period bigint,
-    user_id bigint
+    user_id bigint,
+
+    CONSTRAINT subscription_pkey PRIMARY KEY (id)
 )
     WITH (
         OIDS = FALSE
@@ -138,6 +142,12 @@ ALTER TABLE billingAccounts
         ON UPDATE CASCADE
         ON DELETE CASCADE;
 
+ALTER TABLE product
+    ADD CONSTRAINT fk_company_id FOREIGN KEY (company_id)
+        REFERENCES company (id) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
+
 ALTER TABLE subscription
     ADD CONSTRAINT fk_product_id FOREIGN KEY (product_id)
         REFERENCES product (id) MATCH SIMPLE
@@ -146,7 +156,7 @@ ALTER TABLE subscription
     ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id)
         REFERENCES users (id) MATCH SIMPLE
         ON UPDATE CASCADE
-           ON DELETE CASCADE;
+        ON DELETE CASCADE;
 
 ALTER TABLE company
     ADD CONSTRAINT fk_datausers FOREIGN KEY (data_user)

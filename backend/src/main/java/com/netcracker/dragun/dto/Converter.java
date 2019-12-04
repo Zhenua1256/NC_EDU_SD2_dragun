@@ -24,6 +24,7 @@ public class Converter {
     public static UserDto toDto(User user) {
 
         return UserDto.builder()
+                .id(user.getId())
                 .login(user.getDataUser().getLogin())
                 .password(user.getDataUser().getPassword())
                 .role(user.getRole())
@@ -34,6 +35,7 @@ public class Converter {
     public static UserDto CompanytoUserDto(Company company) {
 
         return UserDto.builder()
+                .id(company.getId())
                 .login(company.getDataUser().getLogin())
                 .password(company.getDataUser().getPassword())
                 .role(company.getRole())

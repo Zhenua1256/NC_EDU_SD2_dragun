@@ -24,6 +24,7 @@ import { PersonalAreaComponent } from './components/users/personal-area/personal
 import {ApiInterseptor} from './interseptors/api-interseptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HeaderService} from './service/header.service';
+import {SubscriptionModule} from './components/subscription/subscription.module';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'registration-service', component: RegistrationProductPageComponent},
   {path: 'home', component: HomeProductPageComponent},
   {path: 'personal', component: PersonalUserPageComponent},
+  {path: 'product/:id', component: DetailsComponent},
   {path: '**', component: NotFoundComponent},
 ];
 
@@ -49,10 +51,11 @@ const routes: Routes = [
     DetailsProductPageComponent,
     HeaderComponent,
     PersonalUserPageComponent,
-    PersonalAreaComponent
+    PersonalAreaComponent,
   ],
   imports: [
     UserModule,
+    SubscriptionModule,
     BillingAccountModule,
     CompanyModule,
     BrowserModule,
