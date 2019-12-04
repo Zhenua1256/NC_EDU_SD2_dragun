@@ -22,6 +22,7 @@ public class BillingAccountController {
     public List<BillingAccount> getAll() {
         return billingAccountService.getAll();
     }
+
     @GetMapping("/{id}")
     public BillingAccount get(@PathVariable(name = "id") Long id) {
         return billingAccountService.get(id);
@@ -33,7 +34,7 @@ public class BillingAccountController {
         return billingAccountConverter.converterBillingAccountFromDto(billingAccountService.create(billingAccountDto));
     }*/
     @PostMapping
-    public BillingAccount create(@RequestBody BillingAccount billingAccount){
+    public BillingAccount create(@RequestBody BillingAccount billingAccount) {
         return billingAccountService.create(billingAccount);
     }
 
@@ -46,5 +47,10 @@ public class BillingAccountController {
     @DeleteMapping("/{id}")
     public void create(@PathVariable(name = "id") Long id) {
         billingAccountService.delete(id);
+    }
+
+    @PostMapping(value = "/{id}")
+    public void refillWallet(@PathVariable Long id, @RequestBody String amount) {
+        billingAccountService.refill(id, amount);
     }
 }

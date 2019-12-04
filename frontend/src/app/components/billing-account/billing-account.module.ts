@@ -17,7 +17,7 @@ import {BillingAccountComponent} from './billing-account.component';
     RouterModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 
   providers: [BillingAccountService],

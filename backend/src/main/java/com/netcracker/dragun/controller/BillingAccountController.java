@@ -28,4 +28,8 @@ public class BillingAccountController {
     public BillingAccount get (@PathVariable(name = "id") Long id){
         return billingAccountService.get(id);
     }
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public void refill(@PathVariable Long id, @RequestBody String amount) {
+        billingAccountService.refill(id, amount);
+    }
 }

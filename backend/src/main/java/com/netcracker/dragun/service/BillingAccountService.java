@@ -12,18 +12,25 @@ public class BillingAccountService {
     private final BillingAccountRepository billingAccountRepository;
 
     @Autowired
-    public BillingAccountService (BillingAccountRepository billingAccountRepository){
+    public BillingAccountService(BillingAccountRepository billingAccountRepository) {
         this.billingAccountRepository = billingAccountRepository;
     }
 
-    public BillingAccount get(Long id)
-    {
+    public BillingAccount get(Long id) {
         return billingAccountRepository.findById(id).get();
     }
-    public BillingAccount save (BillingAccount billingAccount) {
+
+    public BillingAccount save(BillingAccount billingAccount) {
         return billingAccountRepository.save(billingAccount);
     }
-    public List<BillingAccount> getAll(){
+
+    public List<BillingAccount> getAll() {
         return billingAccountRepository.findAll();
+    }
+
+    public void refill(Long id, String amount) {
+        BillingAccount billingAccount = billingAccountRepository.findById(id).orElse(null);
+        billingAccount.setBalance(billingAccount.getBalance() + Long.parseLong(amount));
+        billingAccountRepository.save(billingAccount);
     }
 }

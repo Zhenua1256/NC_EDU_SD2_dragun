@@ -15,28 +15,36 @@ public class BillingAccountService {
     private RestTemplate restTemplate;
     @Value("${backend.url}")
     private String backendURL;
-    public BillingAccountService(RestTemplateBuilder builder){
+
+    public BillingAccountService(RestTemplateBuilder builder) {
         this.restTemplate = builder.build();
     }
+
     public BillingAccount get(Long id) {
-        return restTemplate.getForObject(backendURL+"billingaccount/"+id, BillingAccount.class);
+        return restTemplate.getForObject(backendURL + "billingaccount/" + id, BillingAccount.class);
     }
+
     public List<BillingAccount> getAll() {
-        return Arrays.asList(restTemplate.getForObject(backendURL+"billingaccount/", BillingAccount[].class));
+        return Arrays.asList(restTemplate.getForObject(backendURL + "billingaccount/", BillingAccount[].class));
     }
+
     /*public BillingAccountDto create(BillingAccountDto billingAccountDto) {
         return restTemplate.postForObject(backendURL+"billingaccount/", billingAccountDto, BillingAccountDto.class);
     }*/
     public BillingAccount create(BillingAccount billingAccount) {
-        return restTemplate.postForObject(backendURL+"billingaccount/", billingAccount, BillingAccount.class);
+        return restTemplate.postForObject(backendURL + "billingaccount/", billingAccount, BillingAccount.class);
     }
 
 
     public void update(BillingAccount billingAccount, Long id) {
-        restTemplate.put(backendURL+"billingaccount/"+id, billingAccount);
+        restTemplate.put(backendURL + "billingaccount/" + id, billingAccount);
     }
 
     public void delete(Long id) {
-        restTemplate.delete(backendURL+"billingaccount/"+id);
+        restTemplate.delete(backendURL + "billingaccount/" + id);
+    }
+
+    public void refill(Long id, String amount) {
+        restTemplate.postForObject(backendURL + "billingaccount/" + id.toString(), amount, String.class);
     }
 }

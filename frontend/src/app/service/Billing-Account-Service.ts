@@ -16,7 +16,9 @@ export class BillingAccountService {
   saveBillingAccount(billingAccount: BillingAccountModel) {
     return this.http.post('/api/v1/billingaccount', billingAccount);
   }
-
+  refill(id: string, amount: string): Observable<void> {
+    return this.http.post<void>("/api/v1/billingaccount/" + id, amount);
+  }
   deleteBillingAccount(billingAccountId: string): Observable<void> {
     return this.http.delete<void>('/api/v1/billingaccount/' + billingAccountId);
   }
