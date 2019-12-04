@@ -26,7 +26,6 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = "/generate-token")
-    @PreAuthorize("isAnonymous()")
     public ResponseEntity register(@RequestBody DataUser dataUser){
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

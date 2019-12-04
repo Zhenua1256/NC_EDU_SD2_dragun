@@ -49,13 +49,7 @@ public class UserController {
         User user = new User();
         user =  userService.getUserByLogin(((org.springframework.security.core.userdetails.User) authentication
                 .getPrincipal()).getUsername());
-        if(user != null){
-            return user;
-        }
-        else {
-            return userService.getCompanyByLogin(((org.springframework.security.core.userdetails.User) authentication
-                    .getPrincipal()).getUsername());
-        }
+        return user;
     }
 
     @PutMapping("/{id}")
