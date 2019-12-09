@@ -33,4 +33,7 @@ public class BillingAccountService {
         billingAccount.setBalance(billingAccount.getBalance() + Long.parseLong(amount));
         billingAccountRepository.save(billingAccount);
     }
+    public List<BillingAccount> getAllByUser (Long userId) {
+        return billingAccountRepository.findBillingAccountsByUserId(userId);
+    }
 }

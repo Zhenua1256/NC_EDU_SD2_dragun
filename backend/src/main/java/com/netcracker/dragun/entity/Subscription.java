@@ -20,8 +20,8 @@ public class Subscription {
     /*@ManyToOne
     @JoinColumn(name = "user_id")
     private Long userId;*/
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "billingAccount_id")
+    private Long billingAccountId;
     @Column(name = "period")
     private Long period;
 }

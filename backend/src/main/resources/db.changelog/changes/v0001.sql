@@ -90,7 +90,7 @@ CREATE TABLE subscription
     id                 bigint DEFAULT nextval('subscription_id_seq'::regclass),
     product_id bigint,
     period bigint,
-    user_id bigint,
+    billingAccount_id bigint,
 
     CONSTRAINT subscription_pkey PRIMARY KEY (id)
 )
@@ -153,8 +153,8 @@ ALTER TABLE subscription
         REFERENCES product (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-    ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id)
-        REFERENCES users (id) MATCH SIMPLE
+    ADD CONSTRAINT fk_billingAccount_id FOREIGN KEY (billingAccount_id)
+        REFERENCES billingAccounts (id) MATCH SIMPLE
         ON UPDATE CASCADE
         ON DELETE CASCADE;
 
