@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {BillingAccountService} from '../../service/Billing-Account-Service';
 import {BillingAccountModel} from './model/billing-account.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserModel} from '../users/model/user.model';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-billing-account',
@@ -15,8 +16,6 @@ export class BillingAccountComponent implements OnInit {
   newBillingAccountForm: FormGroup;
   newBillingAccount: BillingAccountModel = new BillingAccountModel();
   public currentUser: UserModel = {};
-  public billingAccounts: BillingAccountModel[];
-/*  private subscriptions: Subscription[] = [];*/
 
   constructor(private billingAccountService: BillingAccountService,
               private  formbuilder: FormBuilder,
@@ -29,7 +28,6 @@ export class BillingAccountComponent implements OnInit {
       cvv: ['', [Validators.required]],
     });
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  /*  this.loadBillingAccounts();*/
   }
 
   send() {
@@ -40,14 +38,5 @@ export class BillingAccountComponent implements OnInit {
     this.newBillingAccount.balance = 0;
     this.billingAccountService.saveBillingAccount(this.newBillingAccount).subscribe();
     this.router.navigate(["/personal"]);
-  }
-  private loadBillingAccounts(): void {
-    // Get data from BillingAccountService
-    /*this.subscriptions.push(this.billingAccountService.getBillingAccounts().subscribe(accounts => {
-      // Parse json response into local array
-      this.billingAccounts = accounts as BillingAccountModel[];
-      // Check data in console
-      this.loadingService.hide();
-    }));*/
   }
 }
