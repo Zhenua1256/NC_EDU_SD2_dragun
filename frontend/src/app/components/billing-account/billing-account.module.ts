@@ -5,12 +5,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {BillingAccountService} from '../../service/Billing-Account-Service';
 import {BillingAccountComponent} from './billing-account.component';
+import {BaTableComponent} from './ba-table/ba-table.component';
 
 
 
 @NgModule({
   declarations: [
-    BillingAccountComponent
+    BillingAccountComponent,
+    BaTableComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,7 @@ import {BillingAccountComponent} from './billing-account.component';
   ],
 
   providers: [BillingAccountService],
-  exports: [BillingAccountComponent]
+  exports: [BillingAccountComponent, BaTableComponent]
 
 })
 export class BillingAccountModule {

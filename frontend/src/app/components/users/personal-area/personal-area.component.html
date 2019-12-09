@@ -5,8 +5,7 @@
       <ul class="navbar-nav mr-auto">
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input type="edit" id="edit">
-        <button class="btn btn-outline-primary" type="submit" (click)="refill()">replenishment cash</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/wallets">My Wallets</button>
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="createBA()">Create card</button>
         <button *ngIf="currentUser.role === 'Company'" class= "btn btn-outline-primary" type="submit" (click)="createProduct()">Create Product</button>
       </form>

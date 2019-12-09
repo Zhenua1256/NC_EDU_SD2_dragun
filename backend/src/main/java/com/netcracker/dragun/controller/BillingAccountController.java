@@ -32,4 +32,8 @@ public class BillingAccountController {
     public void refill(@PathVariable Long id, @RequestBody String amount) {
         billingAccountService.refill(id, amount);
     }
+    @GetMapping("/baByUserId/{id}")
+    public List<BillingAccount> getAllByUser(@PathVariable Long id) {
+        return billingAccountService.getAllByUser(id);
+    }
 }

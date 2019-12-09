@@ -53,4 +53,8 @@ public class BillingAccountController {
     public void refillWallet(@PathVariable Long id, @RequestBody String amount) {
         billingAccountService.refill(id, amount);
     }
+    @RequestMapping(value = "/find-ba-user/{id}")
+    public List<BillingAccount> getAllByUser(@PathVariable Long id){
+       return billingAccountService.getAllByUser(id);
+    }
 }

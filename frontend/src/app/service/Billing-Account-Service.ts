@@ -16,7 +16,7 @@ export class BillingAccountService {
   saveBillingAccount(billingAccount: BillingAccountModel) {
     return this.http.post('/api/v1/billingaccount', billingAccount);
   }
-  refill(id: string, amount: string): Observable<void> {
+  refill(id: string, amount: number): Observable<void> {
     return this.http.post<void>("/api/v1/billingaccount/" + id, amount);
   }
   deleteBillingAccount(billingAccountId: string): Observable<void> {
@@ -25,6 +25,9 @@ export class BillingAccountService {
 
   getBillingAccountById(id: string): Observable<BillingAccountModel> {
     return this.http.get<BillingAccountModel>('/api/v1/billingaccount/' + id);
+  }
+  getBillingAccountUser(userId: string): Observable<BillingAccountModel[]> {
+    return this.http.get<BillingAccountModel[]>("/api/v1/billingaccount/find-ba-user/" + userId);
   }
 
 }

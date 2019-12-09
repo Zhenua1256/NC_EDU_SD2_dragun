@@ -5,6 +5,7 @@ import com.netcraker.dragun.model.BillingAccountDto;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -46,5 +47,8 @@ public class BillingAccountService {
 
     public void refill(Long id, String amount) {
         restTemplate.postForObject(backendURL + "billingaccount/" + id.toString(), amount, String.class);
+    }
+    public List<BillingAccount> getAllByUser(Long id){
+        return Arrays.asList(restTemplate.getForObject(backendURL + "billingaccount/baByUserId/" + id, BillingAccount[].class));
     }
 }

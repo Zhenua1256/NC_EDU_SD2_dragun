@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import {UserModule} from './components/users/users.module';
 import {PagesModule} from './pages/pages.module';
@@ -25,6 +24,8 @@ import {ApiInterseptor} from './interseptors/api-interseptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {HeaderService} from './service/header.service';
 import {SubscriptionModule} from './components/subscription/subscription.module';
+import {BaTableComponent} from './components/billing-account/ba-table/ba-table.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'home', component: HomeProductPageComponent},
   {path: 'personal', component: PersonalUserPageComponent},
   {path: 'product/:id', component: DetailsComponent},
+  {path: 'wallets', component: BaTableComponent},
   {path: '**', component: NotFoundComponent},
 ];
 
@@ -59,6 +61,7 @@ const routes: Routes = [
     BillingAccountModule,
     CompanyModule,
     BrowserModule,
+    NgbModule,
     PagesModule,
     RouterModule.forRoot(routes),
     RegistrationModule,

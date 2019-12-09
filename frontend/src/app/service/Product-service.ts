@@ -19,9 +19,9 @@ export class ProductService {
   getProduct(id: string): Observable<ProductModel> {
     return this.http.get<ProductModel>("/api/v1/products/" + id);
   }
-  createSubcription(userId: string, productId: string, period: string): Observable<SubscriptionModel> {
+  createSubcription(billingAccountId: string, productId: string, period: string): Observable<SubscriptionModel> {
     return this.http.post<SubscriptionModel>("/api/v1/subscriptions", {
-      userId: userId,
+      billingAccountId: billingAccountId,
       productId: productId,
       period: period
     });

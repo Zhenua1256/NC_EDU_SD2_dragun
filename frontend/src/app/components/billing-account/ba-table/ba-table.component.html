@@ -1,0 +1,55 @@
+<div>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <a class="navbar-brand navbar-primery " href="#">Home</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+      </form>
+    </div>
+  </nav>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">owner</th>
+    <th scope="col">balance</th>
+    <th scope="col">cardNumber</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let billingAccountModel of billingAccounts; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>
+      {{ billingAccountModel.owner }}
+    </td>
+    <td>{{ billingAccountModel.balance | number }}</td>
+    <td>{{ billingAccountModel.cardNumber | number }}</td>
+    <td>
+      <button class="btn btn-lg btn-outline-primary" (click)="open(content, billingAccountModel)">refill account</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" id="inputBalance" placeholder="give me my money" [(ngModel)]="amount" name="first">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(amount)">Save</button>
+  </div>
+</ng-template>

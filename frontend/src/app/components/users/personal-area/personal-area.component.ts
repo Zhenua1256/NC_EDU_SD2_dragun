@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {BillingAccountService} from '../../../service/Billing-Account-Service';
 import {UserModel} from '../model/user.model';
@@ -14,6 +14,7 @@ export class PersonalAreaComponent implements OnInit {
               private billingAccountService: BillingAccountService) {
   }
   public currentUser: UserModel = {};
+  billingAccountId: string;
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -23,9 +24,6 @@ export class PersonalAreaComponent implements OnInit {
     this.router.navigate(['/create-ba']);
   }
 
-  public refill() {
-    this.billingAccountService.refill("1", "1000").subscribe();
-  }
   public createProduct() {
     this.router.navigate(["/registration-service"]);
   }
