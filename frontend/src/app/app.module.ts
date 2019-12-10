@@ -26,6 +26,7 @@ import {HeaderService} from './service/header.service';
 import {SubscriptionModule} from './components/subscription/subscription.module';
 import {BaTableComponent} from './components/billing-account/ba-table/ba-table.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from '@angular/forms';
 
 
 const routes: Routes = [
@@ -66,6 +67,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     RegistrationModule,
     RegistrationProductModule,
+    FormsModule,
   ],
   providers: [ApiInterseptor, {
     provide: HTTP_INTERCEPTORS,

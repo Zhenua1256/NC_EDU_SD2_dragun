@@ -14,8 +14,13 @@
           <div class="discription">
                 {{product.description}}
           </div>
-       <button ></button>
-    </div>
+        <form>
+        <select #selectBillingAccount>
+          <option *ngFor="let billingAccount of billingAccounts" [value]="billingAccount.id">{{billingAccount.cardNumber}}</option>
+        </select>
+          <button  type="submit" value="Subscription" (click)="subscribeOnProduct(selectBillingAccount.value)">Subscription</button>
+        </form>
+      </div>
   </div>
 </div>
   </div>

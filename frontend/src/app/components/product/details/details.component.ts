@@ -37,8 +37,8 @@ export class DetailsComponent implements OnInit {
       this.product = products;
     });
   }
-  public subscribeOnProduct() {
-    this.productService.createSubcription(this.currentUser.id, this.productId, this.period).subscribe(model => {
+  public subscribeOnProduct(id: string) {
+    this.productService.createSubcription(id,  this.productId, this.period).subscribe(model => {
       console.log(model);
     });
   }

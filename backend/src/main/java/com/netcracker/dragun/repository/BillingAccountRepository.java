@@ -13,5 +13,4 @@ import java.util.List;
 public interface BillingAccountRepository extends JpaRepository<BillingAccount, Long> {
     @Query(value = "select * from billingaccounts where user_id = ?", nativeQuery = true)
     List<BillingAccount> findBillingAccountsByUserId(Long userId);
-    BillingAccount findBillingAccountByUserId(Long userId);
 }

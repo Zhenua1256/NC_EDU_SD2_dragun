@@ -28,16 +28,18 @@ public class BillingService {
         this.productRepository = productRepository;
     }
 
-    @Scheduled(cron = "0/1000 * * * * ?")
+    @Scheduled(cron = "0/10000 * * * * ?")
     public void Billing(){
         List<Subscription> sub = subscriptionRepository.findAll();
-        for (int i = 0; i <= sub.size(); i++){
-            Long productId = sub.get(i).getProductId();
-            Product product = productRepository.findById(productId).get();
-            Long billingAccountId = sub.get(i).getBillingAccountId();
-            BillingAccount billingAccount = billingAccountRepository.findById(billingAccountId).orElse(null);
-            billingAccount.setBalance(billingAccount.getBalance() - product.getPrice());
-            billingAccountRepository.save(billingAccount);
+        if(sub.size() != 0) {
+            for (int i = 0; i < sub.size(); i++) {
+                Long productId = sub.get(i).getProductId();
+                Product product = productRepository.findById(productId).get();
+                Long billingAccountId = sub.get(i).getBillingAccountId();
+                BillingAccount billingAccount = billingAccountRepository.findById(billingAccountId).orElse(null);
+                billingAccount.setBalance(billingAccount.getBalance() - product.getPrice());
+                billingAccountRepository.save(billingAccount);
+            }
         }
     }
 }
