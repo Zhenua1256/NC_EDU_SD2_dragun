@@ -44,11 +44,20 @@ export class BaTableComponent implements OnInit {
     }
   }
   private loadBillingAccounts(): void {
-    this.subscriptions.push(this.billingAccountService.getBillingAccountUser(this.currentUser.id).subscribe(billingaccount => {
-      this.billingAccounts = billingaccount as BillingAccountModel[];
+    if (this.currentUser.role === "User" || this.currentUser.role === "Company") {
+      this.subscriptions.push(this.billingAccountService.getBillingAccountUser(this.currentUser.id).subscribe(billingaccount => {
+        this.billingAccounts = billingaccount as BillingAccountModel[];
+      }));
+    } else {
+      this.subscriptions.push(this.billingAccountService.getAll().subscribe(billingaccount => {
+        this.billingAccounts = billingaccount as BillingAccountModel[];
     }));
+    }
   }
   public refill(id) {
-    this.billingAccountService.refill( id, +this.closeResult).subscribe();
+    this.billingAccountService.refill(id, +this.closeResult).subscribe();
+  }
+  public deleteBillingAccount(id) {
+    this.billingAccountService.deleteBillingAccount(id).subscribe();
   }
 }

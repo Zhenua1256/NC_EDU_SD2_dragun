@@ -3,6 +3,7 @@ package com.netcracker.dragun.controller;
 import com.netcracker.dragun.entity.BillingAccount;
 import com.netcracker.dragun.service.BillingAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,5 +36,10 @@ public class BillingAccountController {
     @GetMapping("/baByUserId/{id}")
     public List<BillingAccount> getAllByUser(@PathVariable Long id) {
         return billingAccountService.getAllByUser(id);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteBillingAccount(@PathVariable Long id){
+        billingAccountService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

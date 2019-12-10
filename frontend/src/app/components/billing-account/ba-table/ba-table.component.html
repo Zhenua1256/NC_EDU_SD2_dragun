@@ -30,6 +30,9 @@
     <td>
       <button class="btn btn-lg btn-outline-primary" (click)="open(content, billingAccountModel)">refill account</button>
     </td>
+    <td><!--*ngIf="currentUser.role === 'Admin'"-->
+      <button class="bg-dark" (click)="deleteBillingAccount(billingAccountModel.id)">X</button>
+    </td>
   </tr>
   </tbody>
 </table>

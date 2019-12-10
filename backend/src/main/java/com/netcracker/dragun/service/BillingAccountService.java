@@ -36,4 +36,7 @@ public class BillingAccountService {
     public List<BillingAccount> getAllByUser (Long userId) {
         return billingAccountRepository.findBillingAccountsByUserId(userId);
     }
+    public void deleteById (Long id){
+        billingAccountRepository.deleteById(id);
+    }
 }
