@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../service/Product-service';
 import {ProductModel} from '../product/model/product.model';
 import {Router} from '@angular/router';
+import {UserModel} from '../users/model/user.model';
 
 @Component({
   selector: 'app-registration-product',
@@ -11,6 +12,7 @@ import {Router} from '@angular/router';
 })
 export class RegistrationProductComponent implements OnInit {
   newProductForm: FormGroup;
+  currentUser: UserModel;
   newProduct: ProductModel = new ProductModel();
 
   constructor(private productService: ProductService,
@@ -19,8 +21,9 @@ export class RegistrationProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     this.newProductForm = this.formbuilder.group({
-      price: ['', [Validators.required]],
+      price: ['', [Validators.required], Validators.pattern(/^[0-9]/)],
       name: ['', [Validators.required]],
       section: ['', [Validators.required]],
       description: ['', [Validators.required]]
@@ -31,6 +34,7 @@ export class RegistrationProductComponent implements OnInit {
     this.newProduct.name = this.newProductForm.controls.name.value;
     this.newProduct.section = this.newProductForm.controls.section.value;
     this.newProduct.description = this.newProductForm.controls.description.value;
+    this.newProduct.companyId = this.currentUser.id;
     this.productService.addProduct(this.newProduct).subscribe();
     this.router.navigate(["/home"]);
   }

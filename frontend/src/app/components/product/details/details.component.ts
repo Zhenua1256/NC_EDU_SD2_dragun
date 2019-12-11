@@ -22,7 +22,8 @@ export class DetailsComponent implements OnInit {
   period: string = "100";
   constructor(private productService: ProductService,
               private activateRoute: ActivatedRoute,
-              private billingAccountService: BillingAccountService ) {
+              private billingAccountService: BillingAccountService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -38,8 +39,8 @@ export class DetailsComponent implements OnInit {
     });
   }
   public subscribeOnProduct(id: string) {
-    this.productService.createSubcription(id,  this.productId, this.period).subscribe(model => {
-      console.log(model);
+    this.productService.createSubcription(id,  this.productId, this.period, this.currentUser.id).subscribe(model => {
+      this.router.navigate(["/personal"]);
     });
   }
   private loadBillingAccounts(): void {

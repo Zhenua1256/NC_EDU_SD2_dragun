@@ -1,4 +1,15 @@
-<app-header></app-header>
+<nav class="navbar navbar-expand-lg bg-dark">
+  <a class="navbar-brand navbar-primery " href="#">Home</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button *ngIf="currentUser != null" class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/personal">personal</button>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/wallets">My Wallets</button>
+    </form>
+
+  </div>
+</nav>
 <div class="container">
   <div class="row">
     <div class="home-product__card" >
@@ -7,20 +18,20 @@
         <div class="price-value">${{product.price}}
                 <span class="month">per month</span>
         </div>
-        <div class="section">
+        <div class="month">
           {{product.section}}
         </div>
         <span class="month">Description</span>
-          <div class="discription">
+          <div class="description">
                 {{product.description}}
           </div>
-        <form>
+        <form *ngIf="currentUser.role ==='User'" >
         <select #selectBillingAccount>
-          <option *ngFor="let billingAccount of billingAccounts" [value]="billingAccount.id">{{billingAccount.cardNumber}}</option>
+          <option *ngFor="let billingAccount of billingAccounts" [value]="billingAccount.id">{{billingAccount.cardName}}</option>
         </select>
-          <button  type="submit" value="Subscription" (click)="subscribeOnProduct(selectBillingAccount.value)">Subscription</button>
+          <button *ngIf="currentUser.role === 'User' " type="submit" value="Subscription" (click)="subscribeOnProduct(selectBillingAccount.value)">Subscription</button>
         </form>
       </div>
   </div>
 </div>
-  </div>
+</div>

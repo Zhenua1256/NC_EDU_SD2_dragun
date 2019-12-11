@@ -1,0 +1,9 @@
+.container {
+flex: auto;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 40px;
+}
