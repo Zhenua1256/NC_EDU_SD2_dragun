@@ -8,6 +8,6 @@ public class BillingAccount {
     private Long userId;
     private Long balance;
     private Long cardNumber;
-    private String owner;
+    private String cardName;
     private Long cvv;
 }

@@ -23,9 +23,9 @@ export class BillingAccountComponent implements OnInit {
   }
   ngOnInit(): void {
     this.newBillingAccountForm = this.formbuilder.group({
-      cardNumber: ['', [Validators.required]],
-      owner: ['', [Validators.required]],
-      cvv: ['', [Validators.required]],
+      cardNumber: ['', [Validators.required, Validators.pattern("[0-9]")]],
+      cardName: ['', [Validators.required,  Validators.pattern("[A-Za-z]")]],
+      cvv: ['', [Validators.required, Validators.pattern("[0-9]")]],
     });
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
@@ -33,10 +33,10 @@ export class BillingAccountComponent implements OnInit {
   send() {
     this.newBillingAccount.cardNumber = this.newBillingAccountForm.controls.cardNumber.value;
     this.newBillingAccount.cvv = this.newBillingAccountForm.controls.cvv.value;
-    this.newBillingAccount.owner = this.newBillingAccountForm.controls.owner.value;
+    this.newBillingAccount.cardName = this.newBillingAccountForm.controls.cardName.value;
     this.newBillingAccount.userId = this.currentUser.id;
     this.newBillingAccount.balance = 0;
     this.billingAccountService.saveBillingAccount(this.newBillingAccount).subscribe();
-    this.router.navigate(["/personal"]);
+    this.router.navigate(["/wallets"]);
   }
 }

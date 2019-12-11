@@ -4,5 +4,5 @@ export class BillingAccountModel {
   userId?: string;
   cardNumber?: number;
   cvv?: number;
-  owner?: string;
+  cardName?: string;
 }

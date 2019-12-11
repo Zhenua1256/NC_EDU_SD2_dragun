@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {BillingAccountService} from '../../../service/Billing-Account-Service';
 import {UserModel} from '../../users/model/user.model';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-ba-table',
@@ -19,7 +20,8 @@ export class BaTableComponent implements OnInit {
   closeResult: string;
 
   constructor(private billingAccountService: BillingAccountService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private router: Router) { }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -30,6 +32,7 @@ export class BaTableComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = result;
       this.refill(this.selectBa.id);
+      window.location.reload();
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
@@ -58,6 +61,10 @@ export class BaTableComponent implements OnInit {
     this.billingAccountService.refill(id, +this.closeResult).subscribe();
   }
   public deleteBillingAccount(id) {
+    window.location.reload();
     this.billingAccountService.deleteBillingAccount(id).subscribe();
+  }
+  public createBA() {
+    this.router.navigate(['/create-ba']);
   }
 }

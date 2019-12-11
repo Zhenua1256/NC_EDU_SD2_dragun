@@ -91,6 +91,9 @@ CREATE TABLE subscription
     product_id bigint,
     period bigint,
     billingAccount_id bigint,
+    billingAccountCompany_id bigint,
+    status boolean,
+    user_id bigint,
 
     CONSTRAINT subscription_pkey PRIMARY KEY (id)
 )
@@ -106,7 +109,7 @@ CREATE TABLE billingAccounts
     card_number bigint,
     balance bigint,
     cvv bigint,
-    owner character varying(255),
+    card_name character varying(255),
     CONSTRAINT billingAccounts_pkey PRIMARY KEY (id)
 )
     WITH (

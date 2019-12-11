@@ -14,8 +14,8 @@ public class BillingAccount {
     private Long id;
     @Column(name = "cvv")
     private Long cvv;
-    @Column(name = "owner")
-    private String owner;
+    @Column(name = "card_name")
+    private String cardName;
     @Column(name = "card_number")
     private Long cardNumber;
     /*@ManyToOne

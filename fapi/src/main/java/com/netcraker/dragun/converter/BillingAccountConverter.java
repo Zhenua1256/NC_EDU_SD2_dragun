@@ -10,7 +10,7 @@ public class BillingAccountConverter {
     BillingAccountDto convertedObj = new BillingAccountDto();
     convertedObj.setBalance(billingAccount.getBalance());
     convertedObj.setCardNumber(billingAccount.getCardNumber());
-    convertedObj.setOwner(billingAccount.getOwner());
+    convertedObj.setOwner(billingAccount.getCardName());
     convertedObj.setId(billingAccount.getId());
    /* User user = new User();
     user.setId(billingAccount.getUserId());
@@ -23,7 +23,7 @@ public class BillingAccountConverter {
         billingAccount.setBalance(billingAccountDto.getBalance());
         billingAccount.setCardNumber(billingAccountDto.getCardNumber());
         billingAccount.setCvv(billingAccountDto.getCvv());
-        billingAccount.setOwner(billingAccountDto.getOwner());
+        billingAccount.setCardName(billingAccountDto.getOwner());
         billingAccount.setUserId(billingAccountDto.getUser().getId());
         return billingAccount;
     }
