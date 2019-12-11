@@ -4,4 +4,5 @@ export class ProductModel {
   name: string;
   section: string;
   description: string;
+  companyId: string;
 }

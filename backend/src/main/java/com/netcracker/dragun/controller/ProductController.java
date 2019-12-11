@@ -24,6 +24,10 @@ public class ProductController {
     public Product createSubscription (@RequestBody Product product){
         return productService.save(product);
     }
+    @GetMapping(value = "/company/{id}")
+    public List<Product> getProductsCompany(@PathVariable(name = "id") Long companyId){
+        return productService.getProductsCompany(companyId);
+    }
     @GetMapping(value = "/{id}")
     public Product get (@PathVariable(name = "id")Long id ){
         return productService.get(id);

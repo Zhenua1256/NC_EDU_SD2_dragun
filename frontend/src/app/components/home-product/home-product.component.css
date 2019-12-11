@@ -1,3 +1,6 @@
+.container {
+  margin-top: 30px;
+}
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -5,7 +8,7 @@
 }
 .home-product__card{
   width: 300px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
  .pricingTable{
    padding: 30px 0;
@@ -52,7 +55,7 @@
   font-size: 25px;
   font-weight: 700;
   text-transform: uppercase;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
 }
 
 .pricingTable .price-value{
@@ -65,6 +68,15 @@
   font-size: 25px;
   line-height: 10px;
   text-transform: capitalize;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+.pricingTable .Category{
+  display: block;
+  font-size: 25px;
+  line-height: 10px;
+  text-transform: capitalize;
+  margin-bottom: 10px;
 }
 
 .pricingTable .pricing-content{

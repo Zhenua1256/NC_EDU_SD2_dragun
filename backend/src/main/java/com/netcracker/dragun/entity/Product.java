@@ -20,4 +20,6 @@ public class Product {
     private String section;
     @Column(name = "description")
     private String description;
+    @Column(name = "company_id")
+    private Long companyId;
 }

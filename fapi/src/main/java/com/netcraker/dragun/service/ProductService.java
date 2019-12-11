@@ -22,7 +22,12 @@ public class ProductService {
     public Product get(Long id) {
         return restTemplate.getForObject(backendURL + "products/" + id, Product.class);
     }
-
+    public List<Product> getProductsCompany(Long id){
+        return Arrays.asList(restTemplate.getForObject(backendURL + "products/company/" + id, Product[].class));
+    }
+    /*public List<Product> getProductsUser(Long id){
+        return Arrays.asList(restTemplate.getForObject(backendURL + "products/user" + id, Product[].class));
+    }*/
     public List<Product> getAll() {
         return Arrays.asList(restTemplate.getForObject(backendURL + "products", Product[].class));
     }

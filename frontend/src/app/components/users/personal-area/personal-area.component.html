@@ -1,21 +1,51 @@
 <div>
   <nav class="navbar navbar-expand-lg bg-dark">
-    <a class="navbar-brand navbar-primery " href="#">Home</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/wallets">My Wallets</button>
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="createBA()">Create card</button>
-        <button *ngIf="currentUser.role === 'Company'" class= "btn btn-outline-primary" type="submit" (click)="createProduct()">Create Product</button>
-      </form>
-      <div *ngIf="currentUser.role === 'User';else company">
+  <a class="navbar-brand navbar-primery " href="#">Home</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/wallets">My Wallets</button>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="createBA()">Create card</button>
+      <button *ngIf="currentUser.role === 'Company'" class= "btn btn-outline-primary" type="submit" (click)="createProduct()">Create Product</button>
+    </form>
 
+  </div>
+</nav>
+  <div class="container">
+  <div *ngIf="currentUser.role === 'User';else company">
+    <div class="row">
+      <div class="home-product__card" *ngFor="let subscription of subscriptions">
+        <div *ngIf="subscription.status === false" class="pricingTable1">
+        <h3 class="title">{{subscription.nameProduct}}</h3>
+        <div class="price-value">${{subscription.price}}
+          <span class="month">per month</span>
+        </div>
+        <button type ="submit" *ngIf="subscription.status === false" class="pricingTable-signup" (click)="onSubscribe(subscription.id)">Subscribe</button>
       </div>
-      <ng-template #company>
-
-      </ng-template>
+        <div *ngIf="subscription.status === true" class="pricingTable">
+          <h3 class="title">{{subscription.nameProduct}}</h3>
+          <div class="price-value">${{subscription.price}}
+            <span class="month">per month</span>
+          </div>
+          <button type ="submit" *ngIf="subscription.status === true" class="pricingTable-signup" (click)="unSubscribe(subscription.id)">UnSubscribe</button>
+        </div>
+      </div>
     </div>
-  </nav>
+  </div>
+  <ng-template #company>
+    <div class="row">
+      <div class="home-product__card" *ngFor="let product of products">
+        <div class="pricingTable">
+          <h3 class="title">{{product.name}}</h3>
+          <div class="price-value">${{product.price}}
+            <span class="month">per month</span>
+          </div>
+         <!-- <button  class="pricingTable-signup" (click)="productDetails(product.id)">Details</button>-->
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
 </div>
 

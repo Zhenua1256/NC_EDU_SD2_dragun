@@ -19,7 +19,7 @@ export class HomeProductComponent implements OnInit {
     this.getProducts();
   }
   public getProducts() {
-    this.productService.getProducts().subscribe((products: ProductModel[]) => {
+    this.productService.getAllProducts().subscribe((products: ProductModel[]) => {
       this.products = products;
     });
   }

@@ -24,7 +24,14 @@ public class ProductController {
     public Product get(@PathVariable(name = "id") Long id) {
         return productService.get(id);
     }
-
+    @GetMapping("/company/{id}")
+    public List<Product> getProductCompany(@PathVariable(name ="id") Long id){
+        return productService.getProductsCompany(id);
+    }
+    /*@GetMapping("/user/{id}")
+    public List<Product> getProductUser(@PathVariable(name ="id") Long id){
+        return productService.getProductsUser(id);
+    }*/
     @PostMapping
     public Product create(@RequestBody Product product) {
         return productService.create(product);

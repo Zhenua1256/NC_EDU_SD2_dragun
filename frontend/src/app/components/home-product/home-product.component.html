@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
   <div class="home-product__card" *ngFor="let product of products">
@@ -6,6 +5,9 @@
       <h3 class="title">{{product.name}}</h3>
       <div class="price-value">${{product.price}}
         <span class="month">per month</span>
+      </div>
+      <span class="Category">category</span>
+      <div class="month">{{product.section}}
       </div>
       <button  class="pricingTable-signup" (click)="productDetails(product.id)">Details</button>
     </div>
