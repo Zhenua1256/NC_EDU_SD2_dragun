@@ -26,7 +26,15 @@ public class SubscriptionService {
     public Subscription create(Subscription subscription) {
         return restTemplate.postForObject(backendURL+"subscriptions/", subscription, Subscription.class);
     }
-
+    public Subscription unSubscribe (Long id) {
+        return restTemplate.getForObject(backendURL + "subscriptions/unsubscribe/" + id, Subscription.class);
+    }
+    public Subscription onSubscribe (Long id) {
+        return restTemplate.getForObject(backendURL + "subscriptions/onsubscribe/" + id, Subscription.class);
+    }
+    public List<Subscription> getSubscriptionUser(Long id){
+        return Arrays.asList(restTemplate.getForObject(backendURL + "subscriptions/user/" + id, Subscription[].class));
+    }
     public void update(Subscription subscription, Long id) {
         restTemplate.put(backendURL+"subscriptions/"+id, subscription);
     }

@@ -28,6 +28,18 @@ public class SubscriptionController {
         return subscriptionService.save(subscription);
     }
 
+    @GetMapping(value = "/user/{id}")
+    public List<Subscription> getSubscriptionUser(@PathVariable(name = "id")Long id){
+        return subscriptionService.getSubscriptionUser(id);
+    }
+    @GetMapping(value = "/unsubscribe/{id}")
+    public Subscription unSubscribe(@PathVariable(name = "id") Long id){
+        return subscriptionService.unSubscribe(id);
+    }
+    @GetMapping(value = "/onsubscribe/{id}")
+    public Subscription onSubscribe(@PathVariable(name = "id") Long id){
+        return subscriptionService.onSubscribe(id);
+    }
     @GetMapping(value = "/{id}")
     public Subscription get(@PathVariable(name = "id") Long id) {
         return subscriptionService.get(id);

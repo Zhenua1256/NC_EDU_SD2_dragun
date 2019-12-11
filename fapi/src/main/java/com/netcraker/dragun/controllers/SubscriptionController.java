@@ -1,5 +1,7 @@
 package com.netcraker.dragun.controllers;
 
+import com.netcraker.dragun.converter.SubscriptionConverter;
+import com.netcraker.dragun.converter.SubscriptionDto;
 import com.netcraker.dragun.model.Subscription;
 import com.netcraker.dragun.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,24 @@ public class SubscriptionController {
     }
 
     @PostMapping
-    public Subscription create(@RequestBody Subscription subscription) {
-        return subscriptionService.create(subscription);
-    }
+    public Subscription create(@RequestBody SubscriptionDto subscriptionDto) {
+        SubscriptionConverter subscriptionConverter = new SubscriptionConverter();
+        return subscriptionService.create(subscriptionConverter.fromDto(subscriptionDto));
 
+    }
+    @GetMapping("/unsubscribe/{id}")
+    public Subscription unSubscribe(@PathVariable(name = "id") Long id){
+        return subscriptionService.unSubscribe(id);
+    }
+    @GetMapping("/onsubscribe/{id}")
+    public Subscription onSubscribe(@PathVariable(name = "id") Long id){
+        return subscriptionService.onSubscribe(id);
+    }
+    @GetMapping("/user/{id}")
+    public List<SubscriptionDto> getSubscriptionUser(@PathVariable(name = "id") Long id){
+        SubscriptionConverter subscriptionConverter = new SubscriptionConverter();
+        return subscriptionConverter.toListDto(subscriptionService.getSubscriptionUser(id));
+    }
     @PutMapping("/{id}")
     public void create(@RequestBody Subscription subscription,
                        @PathVariable(name = "id") Long id) {

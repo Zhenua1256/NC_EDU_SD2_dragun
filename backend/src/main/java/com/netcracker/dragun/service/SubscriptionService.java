@@ -19,6 +19,19 @@ public class SubscriptionService {
     public Subscription save(Subscription subscription){
         return subscriptionRepository.save(subscription);
     }
+    public List<Subscription> getSubscriptionUser(Long id){
+        return subscriptionRepository.findSubscriptionByUserId(id);
+    }
+    public Subscription unSubscribe(Long id) {
+        Subscription subscription = subscriptionRepository.findSubscriptionById(id);
+        subscription.setStatus(false);
+        return subscriptionRepository.save(subscription);
+    }
+    public Subscription onSubscribe(Long id) {
+        Subscription subscription = subscriptionRepository.findSubscriptionById(id);
+        subscription.setStatus(true);
+        return subscriptionRepository.save(subscription);
+    }
     public List<Subscription> getAll(){
         return subscriptionRepository.findAll();
     }
