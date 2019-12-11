@@ -23,5 +23,4 @@ public class UserConverter {
                 .name(user.getName())
                 .build();
     }
-
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HeaderService} from '../../service/header.service';
 import {Router} from '@angular/router';
+import {UserModel} from '../users/model/user.model';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   public _loggedIn: boolean = false;
+  public currentUser: UserModel = {};
 
   constructor(private headerService: HeaderService,
               private router: Router) { }
@@ -18,6 +20,7 @@ export class HeaderComponent implements OnInit {
     this.headerService.getLoginSubscription().subscribe((event) => {
       this._loggedIn = event;
     });
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
   public logout() {
     localStorage.removeItem("token");
