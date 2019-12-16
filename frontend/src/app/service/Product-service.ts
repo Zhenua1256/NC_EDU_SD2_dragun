@@ -1,8 +1,8 @@
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Injectable} from "@angular/core";
-import {ProductModel} from "../components/product/model/product.model";
-import {SubscriptionModel} from "../components/subscription/model/subscription.model";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ProductModel} from '../components/product/model/product.model';
+import {SubscriptionModel} from '../components/subscription/model/subscription.model';
 
 @Injectable()
 export class ProductService {
@@ -10,29 +10,35 @@ export class ProductService {
   }
 
   addProduct(product: ProductModel) {
-    return this.http.post("/api/v1/products", product);
+    return this.http.post('/api/v1/products', product);
   }
 
   getProductsCompany(id: string): Observable<ProductModel[]> {
-    return this.http.get<ProductModel[]>("/api/v1/products/company/" + id);
+    return this.http.get<ProductModel[]>('/api/v1/products/company/' + id);
   }
+
   getSubscriptionUser(id: string): Observable<SubscriptionModel[]> {
-    return this.http.get<SubscriptionModel[]>("/api/v1/subscriptions/user/" + id);
+    return this.http.get<SubscriptionModel[]>('/api/v1/subscriptions/user/' + id);
   }
+
   getProduct(id: string): Observable<ProductModel> {
-    return this.http.get<ProductModel>("/api/v1/products/" + id);
+    return this.http.get<ProductModel>('/api/v1/products/' + id);
   }
+
   getAllProducts(): Observable<ProductModel[]> {
-    return this.http.get<ProductModel[]>("/api/v1/products/");
+    return this.http.get<ProductModel[]>('/api/v1/products/');
   }
+
   unSubscribe(id: string): Observable<SubscriptionModel> {
-    return this.http.get<SubscriptionModel>("/api/v1/subscriptions/unsubscribe/" + id);
+    return this.http.get<SubscriptionModel>('/api/v1/subscriptions/unsubscribe/' + id);
   }
+
   onSubscribe(id: string): Observable<SubscriptionModel> {
-    return this.http.get<SubscriptionModel>("/api/v1/subscriptions/onsubscribe/" + id);
+    return this.http.get<SubscriptionModel>('/api/v1/subscriptions/subscribe/' + id);
   }
+
   createSubcription(billingAccountId: string, productId: string, period: string, userId: string): Observable<SubscriptionModel> {
-    return this.http.post<SubscriptionModel>("/api/v1/subscriptions", {
+    return this.http.post<SubscriptionModel>('/api/v1/subscriptions', {
       billingAccountId: billingAccountId,
       productId: productId,
       period: period,

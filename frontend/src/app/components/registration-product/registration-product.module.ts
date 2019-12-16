@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatTabsModule} from '@angular/material';
+import {MatSelectModule, MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RegistrationProductComponent} from './registration-product.component';
 import {ProductService} from '../../service/Product-service';
@@ -17,7 +17,8 @@ import {ProductService} from '../../service/Product-service';
     FormsModule,
     MatTabsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
 
   providers: [ProductService],

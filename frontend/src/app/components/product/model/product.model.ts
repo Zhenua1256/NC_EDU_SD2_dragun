@@ -5,4 +5,5 @@ export class ProductModel {
   section: string;
   description: string;
   companyId: string;
+  billingAccountId: string;
 }
