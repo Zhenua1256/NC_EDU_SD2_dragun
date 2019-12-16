@@ -3,6 +3,12 @@ import {Observable, ReplaySubject, Subject} from 'rxjs';
 export class HeaderService {
   private $login: Subject<boolean> = new ReplaySubject(1);
 
+  constructor() {
+    if (localStorage.getItem("token")) {
+      this.$login.next(true);
+    }
+  }
+
   public getLoginSubscription(): Observable<boolean> {
     return this.$login;
   }
