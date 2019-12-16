@@ -14,15 +14,15 @@ public class Subscription {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product productId;
+    private Product product;
     /*@Column(name = "product_id")
     private Long productId;*/
     /*@ManyToOne
     @JoinColumn(name = "user_id")
     private Long userId;*/
-    @Column(name = "billingAccount_id")
+    @Column(name = "billing_Account_id")
     private Long billingAccountId;
-    @Column(name = "billingAccountCompany_id")
+    @Column(name = "billing_Account_Company_id")
     private Long billingAccountCompanyId;
     @Column(name = "period")
     private Long period;

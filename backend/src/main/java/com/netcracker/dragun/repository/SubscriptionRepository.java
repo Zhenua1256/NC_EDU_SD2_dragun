@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
-    @Query(value = "select * from subscription order by id" , nativeQuery = true)
+    @Query(value = "select * from subscription where user_id = ? order by id" , nativeQuery = true)
     List<Subscription> findSubscriptionByUserId(Long id);
     Subscription findSubscriptionById(Long id);
 }

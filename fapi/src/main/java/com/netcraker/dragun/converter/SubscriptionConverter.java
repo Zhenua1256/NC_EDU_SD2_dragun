@@ -12,8 +12,8 @@ public class SubscriptionConverter {
         for (Subscription i : subscription) {
             list.add(SubscriptionDto.builder()
                     .id(i.getId())
-                    .nameProduct(i.getProductId().getName())
-                    .price(i.getProductId().getPrice())
+                    .nameProduct(i.getProduct().getName())
+                    .price(i.getProduct().getPrice())
                     .period(i.getPeriod())
                     .status(i.getStatus())
                     .build());
@@ -27,7 +27,7 @@ public class SubscriptionConverter {
                 .price(subscriptionDto.getPrice())*/
                 .build();
         return Subscription.builder()
-                .productId(product)
+                .product(product)
                 .period(subscriptionDto.getPeriod())
                 .billingAccountId(subscriptionDto.getBillingAccountId())
                 .status(subscriptionDto.getStatus())
