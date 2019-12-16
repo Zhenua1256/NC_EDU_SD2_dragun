@@ -1,17 +1,15 @@
 package com.netcraker.dragun.controllers;
 
-import com.netcraker.dragun.model.Company;
-import com.netcraker.dragun.model.DataUser;
 import com.netcraker.dragun.model.User;
 import com.netcraker.dragun.service.CompanyService;
 import com.netcraker.dragun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import sun.security.util.SecurityConstants;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -38,7 +36,7 @@ public class UserController {
 
 
     @PostMapping
-    public User createDataUser(@RequestBody User user) {
+    public ResponseEntity createDataUser(@Valid @RequestBody User user) {
         return userService.create(user);
     }
 
@@ -46,7 +44,7 @@ public class UserController {
     @GetMapping("/current")
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = new User();
+        User user;
         user =  userService.getUserByLogin(((org.springframework.security.core.userdetails.User) authentication
                 .getPrincipal()).getUsername());
         return user;

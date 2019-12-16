@@ -6,12 +6,16 @@ import com.netcraker.dragun.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -46,9 +50,21 @@ public class UserService implements UserDetailsService {
         return restTemplate.getForObject(backendURL + "companies/login/" + login, User.class);
     }
 
-    public User create(User user) {
+    /*public User create(User user) {
+
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return restTemplate.postForObject(backendURL + "users/", user, User.class);
+    }*/
+    public ResponseEntity create(User user) {
+        HttpEntity<User> entity = new HttpEntity<>(user);
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        ResponseEntity<User> response;
+        try{
+            response = restTemplate.postForEntity(backendURL + "users/" , entity , User.class);
+        } catch (HttpClientErrorException.BadRequest ex) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 
     public void update(User user, Long id) {

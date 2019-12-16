@@ -34,27 +34,30 @@ public class UserController {
     }
 
     @GetMapping("/login/{login}")
-    private UserDto get (@PathVariable String login){
-        User user =  userRepository.findUserByDataUser_Login(login);
-        if(user != null){
-        UserDto userDto = Converter.toDto(user);
-            return  userDto;
-        }
-        else {
-            Company company =  companyRepository.findCompanyByDataUser_Login(login);
+    private UserDto get(@PathVariable String login) {
+        User user = userRepository.findUserByDataUser_Login(login);
+        if (user != null) {
+            UserDto userDto = Converter.toDto(user);
+            return userDto;
+        } else {
+            Company company = companyRepository.findCompanyByDataUser_Login(login);
             UserDto userDto = Converter.CompanytoUserDto(company);
             return userDto;
         }
     }
 
     @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
+        return userService.save(Converter.fromDto(userDto));
+    }
+
+   /* @PostMapping
     public User createUser(@RequestBody UserDto userDto) {
         User user = userService.save(Converter.fromDto(userDto));
         return user;
-    }
-
+    }*/
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUserbyId(@PathVariable Long id) {
+    public ResponseEntity deleteUserById(@PathVariable Long id) {
         userService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
