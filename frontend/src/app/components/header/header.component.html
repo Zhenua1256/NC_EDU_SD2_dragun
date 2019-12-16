@@ -7,8 +7,8 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <button *ngIf="currentUser != null" class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/personal">personal</button>
-        <button *ngIf="_loggedIn" class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/login">Log in</button>
-        <button *ngIf="!_loggedIn" class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="logout()">Log out</button>
+        <button *ngIf="!_loggedIn" class="btn btn-outline-primary my-2 my-sm-0" type="submit" routerLink="/login">Log in</button>
+        <button *ngIf="_loggedIn" class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="logout()">Log out</button>
       </form>
     </div>
   </nav>

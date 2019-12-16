@@ -26,11 +26,12 @@ import {HeaderService} from './service/header.service';
 import {SubscriptionModule} from './components/subscription/subscription.module';
 import {BaTableComponent} from './components/billing-account/ba-table/ba-table.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatButtonModule, MatSelectModule} from '@angular/material';
 
 
 const routes: Routes = [
-  {path: '',  redirectTo: '/home', pathMatch: 'full'},
+  {path: '',  redirectTo: '/login', pathMatch: 'full'},
   {path: 'login' , component: HomePageComponent},
   {path: 'registration', component: RegistrationPageComponent},
   {path: 'create-ba', component: CreateBillingAccountComponent},
@@ -68,13 +69,19 @@ const routes: Routes = [
     RegistrationModule,
     RegistrationProductModule,
     FormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    ReactiveFormsModule,
   ],
   providers: [ApiInterseptor, {
     provide: HTTP_INTERCEPTORS,
     useClass: ApiInterseptor,
     multi: true
   },
-  HeaderService],
+    HeaderService],
+  exports: [
+    HeaderComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
