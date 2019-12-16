@@ -4,59 +4,64 @@
       <div class="card-body">
         <h1 class="title"></h1>
         <mat-tab-group>
-           <mat-tab label = "Company">
-              <div class="eudr-registration-company__container _small">
-      <div class="form-group ">
-        <label for="inputName4">Company name</label>
-        <input type="name" class="form-control" id="inputNameCompany4" placeholder="company name" [(ngModel)]="currentCompany.name">
-      </div>
-      <div class="form-group ">
-        <label for="inputDirectorName4">Full name company director</label>
-        <input type="directorname" class="form-control" id="inputDirectorName4" placeholder="full name" [(ngModel)]="currentCompany.directorName">
-      </div>
-      <div class="form-group ">
-        <label for="inputContuctNumber4">Contuct Number</label>
-        <input type="ContuctNumber" class="form-control" id="inputContuctNumber4" placeholder="contuct number"
-               [(ngModel)]="currentCompany.contactNumber">
-      </div>
-      <div class="form-group ">
-        <label for="inputLegaladdres4">Legal Adress Company </label>
-        <input type="legaladdres" class="form-control" id="inputLegaladdres4" placeholder="adress" [(ngModel)]="currentCompany.legalAddres">
-      </div>
-      <div class="form-group ">
-        <label for="inputLogin4">Login</label>
-        <input type="email" class="form-control" id="inputLoginCompany4" placeholder="login" [(ngModel)]="currentCompany.login">
-      </div>
-      <div class="form-group ">
-        <label for="inputName4">Password</label>
-        <input type="name" class="form-control" id="inputPasswordCompany4" placeholder="password"
-               [(ngModel)]="currentCompany.password">
-      </div>
-      <button type="button" class="btn btn-primary"  (click)="addCompany()" routerLink="/login">Register</button>
-    </div>
-           </mat-tab>
-          <mat-tab label = "User">
-              <div class="eudr-registration-user__container _small">
-      <div class="form-group ">
-        <label for="inputName4">Name</label>
-        <input type="name" class="form-control" id="inputName4" placeholder="name" [(ngModel)]="currentUser.name">
-      </div>
-      <div class="form-group ">
-        <label for="inputLastName4">Surname</label>
-        <input type="lastname" class="form-control" id="inputLastName4" placeholder="surname"
-               [(ngModel)]="currentUser.lastName">
-      </div>
-      <div class="form-group ">
-        <label for="inputLogin4">Login</label>
-        <input type="email" class="form-control" id="inputLogin4" placeholder="login" [(ngModel)]="currentUser.login">
-      </div>
-      <div class="form-group ">
-        <label for="inputName4">Password</label>
-        <input type="name" class="form-control" id="inputPassword4" placeholder="password"
-               [(ngModel)]="currentUser.password">
-      </div>
-      <button type="button" class="btn btn-primary" (click)="addUser()" routerLink="/login">Register</button>
-      </div>
+          <mat-tab label="Company">
+            <div [formGroup]="newRegistrationCompanyForm" class="eudr-registration-company__container _small">
+              <div class="form-group ">
+                <label for="inputName4">Company name</label>
+                <input type="name" class="form-control" id="inputNameCompany4" placeholder="company name" formControlName ="companyName">
+              </div>
+              <div class="form-group ">
+                <label for="inputDirectorName4">Full name company director</label>
+                <input type="name" class="form-control" id="inputDirectorName4" placeholder="full name"
+                       formControlName ="directorName">
+              </div>
+              <div class="form-group ">
+                <label for="inputContactNumber4">Contact Number</label>
+                <input type="ContactNumber" class="form-control" id="inputContactNumber4" placeholder="contact number"
+                       formControlName ="contactNumber">
+              </div>
+              <div class="form-group ">
+                <label for="inputLegaladdress">Legal Adress Company </label>
+                <input type="legaladdress" class="form-control" id="inputLegaladdress" placeholder="adress"
+                       formControlName ="legalAddress">
+              </div>
+              <div class="form-group ">
+                <label for="inputLoginCompany">Login *</label>
+                <input type="login" class="form-control" id="inputLoginCompany" placeholder="login"
+                       formControlName ="login" required>
+              </div>
+              <div class="form-group ">
+                <label for="inputPasswordCompany">Password *</label>
+                <input type="password" class="form-control" id="inputPasswordCompany" placeholder="password"
+                       formControlName="password"  required>
+              </div>
+              <button type="button" class="btn btn-primary" (click)="addCompany()" [disabled]="!newRegistrationCompanyForm.valid">Register</button>
+            </div>
+          </mat-tab>
+          <mat-tab label="User">
+            <div [formGroup]="newRegistrationUserForm" class="eudr-registration-user__container _small">
+              <div class="form-group ">
+                <label for="inputName4">Name</label>
+                <input type="name" class="form-control" id="inputName4" placeholder="name"
+                       formControlName ="name">
+              </div>
+              <div class="form-group ">
+                <label for="inputLastName4">Last Name</label>
+                <input type="lastName" class="form-control" id="inputLastName4" placeholder="last name"
+                       formControlName ="lastName">
+              </div>
+              <div class="form-group ">
+                <label for="inputLogin4">Login *</label>
+                <input type="email" class="form-control" id="inputLogin4" placeholder="login"
+                       formControlName ="login" required>
+              </div>
+              <div class="form-group ">
+                <label for="inputName4">Password *</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="password"
+                       formControlName="password" required>
+              </div>
+              <button type="button" class="btn btn-primary" (click)="addUser()" [disabled]="!newRegistrationUserForm.valid">Register</button>
+            </div>
           </mat-tab>
         </mat-tab-group>
       </div>

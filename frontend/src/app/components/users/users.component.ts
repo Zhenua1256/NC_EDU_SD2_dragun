@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserModel} from './model/user.model';
-import {UserService} from '../../service/User-Service';
 
 @Component({
   selector: 'app-users',
@@ -11,20 +10,10 @@ export class UserComponent implements OnInit {
   users: UserModel[] = [];
 
   public currentUser: UserModel = {};
-  constructor(private userService: UserService) {
+  constructor() {
 
   }
 
   ngOnInit(): void {
-  }
-
-  public add(user?: UserModel): void {
-
-    console.log(this.currentUser);
-    this.userService.addUser(this.currentUser)
-      .subscribe(savedUser => {
-        this.users.push(savedUser);
-      });
-
   }
 }
