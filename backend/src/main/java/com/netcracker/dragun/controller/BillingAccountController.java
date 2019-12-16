@@ -14,31 +14,42 @@ public class BillingAccountController {
     private final BillingAccountService billingAccountService;
 
     @Autowired
-    public BillingAccountController (BillingAccountService billingAccountService){
+    public BillingAccountController(BillingAccountService billingAccountService) {
         this.billingAccountService = billingAccountService;
     }
+
     @PostMapping
-    public BillingAccount createBillingAccount (@RequestBody BillingAccount billingAccount){
+    public BillingAccount createBillingAccount(@RequestBody BillingAccount billingAccount) {
         return billingAccountService.save(billingAccount);
     }
+
     @GetMapping
-    public List<BillingAccount> getAll(){
+    public List<BillingAccount> getAll() {
         return billingAccountService.getAll();
     }
+
     @GetMapping(value = "/{id}")
-    public BillingAccount get (@PathVariable(name = "id") Long id){
+    public BillingAccount get(@PathVariable(name = "id") Long id) {
         return billingAccountService.get(id);
     }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public void refill(@PathVariable Long id, @RequestBody String amount) {
         billingAccountService.refill(id, amount);
     }
+
     @GetMapping("/baByUserId/{id}")
     public List<BillingAccount> getAllByUser(@PathVariable Long id) {
         return billingAccountService.getAllByUser(id);
     }
+
+    @GetMapping("/baByCompanyId/{id}")
+    public List<BillingAccount> getAllByCompany(@PathVariable Long id) {
+        return billingAccountService.getAllByCompany(id);
+    }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteBillingAccount(@PathVariable Long id){
+    public ResponseEntity deleteBillingAccount(@PathVariable Long id) {
         billingAccountService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

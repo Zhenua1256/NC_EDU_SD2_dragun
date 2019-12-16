@@ -23,6 +23,8 @@ public class BillingAccount {
     private User user;*/
     @Column(name = "user_id")
     private Long userId;
+    @Column(name = "company_id")
+    private Long companyId;
     @Column(name = "balance")
     private Long balance;
 }
