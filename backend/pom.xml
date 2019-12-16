@@ -18,7 +18,6 @@
     <name>backend</name>
     <description>Backend module</description>
 
-
     <properties>
         <java.version>1.8</java.version>
     </properties>
