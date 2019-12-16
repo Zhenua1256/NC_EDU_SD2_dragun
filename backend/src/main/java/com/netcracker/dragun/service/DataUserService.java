@@ -7,21 +7,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
 public class DataUserService {
 
-    private final DataUserRepository DataUserRepository;
+    private final DataUserRepository dataUserRepository;
 
-    public DataUserService(DataUserRepository DataUserRepository) {
-        this.DataUserRepository = DataUserRepository;
+    public DataUserService(DataUserRepository dataUserRepository) {
+        this.dataUserRepository = dataUserRepository;
     }
 
     public DataUser get(Long id) {
-        return DataUserRepository.findById(id).get();
+        return dataUserRepository.findById(id).get();
     }
 
-
     public List<DataUser> getAll() {
-        return DataUserRepository.findAll();
+        return dataUserRepository.findAll();
     }
 }

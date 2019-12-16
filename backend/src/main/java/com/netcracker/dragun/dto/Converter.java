@@ -52,7 +52,7 @@ public class Converter {
                 .role(companyDto.getRole())
                 .contactNumber(companyDto.getContactNumber())
                 .directorName(companyDto.getDirectorName())
-                .legalAddres(companyDto.getLegalAddres())
+                .legalAddres(companyDto.getLegalAddress())
                 .name(companyDto.getName()).build();
         return company;
     }
@@ -64,7 +64,7 @@ public class Converter {
                 .name(company.getName())
                 .contactNumber(company.getContactNumber())
                 .directorName(company.getDirectorName())
-                .legalAddres(company.getLegalAddres())
+                .legalAddress(company.getLegalAddres())
                 .build();
     }
 }

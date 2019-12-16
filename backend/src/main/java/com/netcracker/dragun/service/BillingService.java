@@ -27,20 +27,21 @@ public class BillingService {
         this.productRepository = productRepository;
     }
 
-    @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "0/1000 * * * * ?")
     public void Billing(){
         List<Subscription> sub = subscriptionRepository.findAll();
         if(sub.size() != 0) {
             for (int i = 0; i < sub.size(); i++) {
-                Product product = sub.get(i).getProductId();
+                Product product = sub.get(i).getProduct();
                 Long billingAccountCompanyId = product.getCompanyId();
                 Long billingAccountId = sub.get(i).getBillingAccountId();
-                BillingAccount billingAccount = billingAccountRepository.findById(billingAccountId).orElse(null);
+                BillingAccount billingAccount = billingAccountRepository.findBillingAccountById(billingAccountId);
                 if(billingAccount.getBalance()<= 0 || sub.get(i).getStatus() == false ){
                     sub.get(i).setStatus(false);
+                    subscriptionRepository.save(sub.get(i));
                 } else {
                 billingAccount.setBalance(billingAccount.getBalance() - product.getPrice());
-                BillingAccount billingAccountCompany = billingAccountRepository.findById(billingAccountCompanyId).orElse(null);
+                BillingAccount billingAccountCompany = billingAccountRepository.findBillingAccountByCompanyId(billingAccountCompanyId);
                 billingAccountCompany.setBalance(billingAccountCompany.getBalance() + product.getPrice());
                 billingAccountRepository.save(billingAccount);
                 billingAccountRepository.save(billingAccountCompany);
