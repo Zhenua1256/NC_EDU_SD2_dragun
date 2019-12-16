@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-dark">
-  <a class="navbar-brand navbar-primery " href="#">Home</a>
+  <a class="navbar-brand navbar-primery " routerLink="/home">Home</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     </ul>
@@ -23,14 +23,21 @@
         </div>
         <span class="month">Description</span>
           <div class="description">
-                {{product.description}}
+            <label>{{product.description}}</label>
           </div>
-        <form *ngIf="currentUser.role ==='User'" >
-        <select #selectBillingAccount>
-          <option *ngFor="let billingAccount of billingAccounts" [value]="billingAccount.id">{{billingAccount.cardName}}</option>
-        </select>
-          <button *ngIf="currentUser.role === 'User' " type="submit" value="Subscription" (click)="subscribeOnProduct(selectBillingAccount.value)">Subscription</button>
+        <form [formGroup]="newForm" class="home-product__card-form" *ngIf="currentUser.role ==='User'">
+          <mat-select formControlName="billingAccount">
+            <mat-option *ngFor="let billingAccount of billingAccounts" [value]="billingAccount.id">
+              {{billingAccount.cardName}}
+            </mat-option>
+          </mat-select>
+            <button mat-raised-button color="primary" *ngIf="currentUser.role === 'User'" type="submit" value="Subscription"
+                    [disabled]="!newForm.valid"
+                    (click)="subscribeOnProduct()">Subscribe</button>
         </form>
+        <div *ngIf="!newForm.controls.billingAccount.valid">
+          please create a wallet first
+        </div>
       </div>
   </div>
 </div>

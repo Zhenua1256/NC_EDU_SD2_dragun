@@ -95,6 +95,9 @@
   align-items: center;
   justify-content: center
 }
+.pricingTable.description > label{
+  overflow-wrap: break-word;
+}
 .pricingTable .Category{
   display: block;
   font-size: 25px;
@@ -146,6 +149,17 @@
 .pricingTable:hover .pricingTable-signup{
   color: #fff;
   border-color: #fff;
+}
+
+.home-product__card-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-product__card-form > mat-select {
+  max-width: 280px;
+  margin-right: 30px;
 }
 
 @media only screen and (max-width: 990px){
