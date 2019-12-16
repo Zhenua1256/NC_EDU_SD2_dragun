@@ -3,10 +3,13 @@ package com.netcraker.dragun.service;
 import com.netcraker.dragun.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -35,9 +38,16 @@ public class CompanyService {
         return Arrays.asList(restTemplate.getForObject(backendURL + "companies/", Company[].class));
     }
 
-    public Company create(Company company) {
+    public ResponseEntity create(Company company) {
+        HttpEntity<Company> entity = new HttpEntity<>(company);
         company.setPassword(bCryptPasswordEncoder.encode(company.getPassword()));
-        return restTemplate.postForObject(backendURL + "companies/", company, Company.class);
+        ResponseEntity<Company> response;
+        try{
+            response = restTemplate.postForEntity(backendURL + "companies/" , entity , Company.class);
+        } catch (HttpClientErrorException.BadRequest ex) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 
     public void update(Company company, Long id) {

@@ -30,19 +30,17 @@ public class CompanyController {
     }
 
     @PostMapping
-    public CompanyDto createCompany(@RequestBody CompanyDto companyDto) {
-        Company company = companyService.save(Converter.fromDto(companyDto));
-        return companyDto;
+    public ResponseEntity<Company> createCompany(@RequestBody CompanyDto companyDto) {
+        return companyService.save(Converter.fromDto(companyDto));
     }
     @GetMapping("/login/{login}")
     private UserDto get (@PathVariable String login){
         Company company =  companyRepository.findCompanyByDataUser_Login(login);
-        UserDto userDto = Converter.CompanytoUserDto(company);
-        return  userDto;
+        return  Converter.CompanytoUserDto(company);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUserbyId(@PathVariable Long id) {
+    public ResponseEntity deleteUserById(@PathVariable Long id) {
         companyService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

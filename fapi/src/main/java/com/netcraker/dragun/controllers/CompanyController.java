@@ -3,8 +3,10 @@ package com.netcraker.dragun.controllers;
 import com.netcraker.dragun.model.Company;
 import com.netcraker.dragun.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +30,7 @@ public class CompanyController {
     }
 
     @PostMapping
-    public Company create(@RequestBody Company company) {
+    public ResponseEntity create(@Valid @RequestBody Company company) {
         return companyService.create(company);
     }
 
