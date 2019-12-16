@@ -2,8 +2,8 @@ package com.netcraker.dragun.converter;
 
 import com.netcraker.dragun.model.BillingAccount;
 import com.netcraker.dragun.model.BillingAccountDto;
-import com.netcraker.dragun.model.User;
 import org.springframework.stereotype.Component;
+
 @Component
 public class BillingAccountConverter {
     public BillingAccountDto converterBillingAccountToDto(BillingAccount billingAccount) {

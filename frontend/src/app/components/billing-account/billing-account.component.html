@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-dark">
-  <a class="navbar-brand navbar-primery " href="#">Home</a>
+  <a class="navbar-brand navbar-primery " routerLink="/home">Home</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     </ul>
@@ -17,23 +17,24 @@
       <div class="payment">
         <form [formGroup] = "newBillingAccountForm">
           <div class="form-group cardName">
-            <label for="CardName">CardName</label>
-            <input type="text" class="form-control" id="CardName" formControlName="cardName" required>
+            <label for="CardName">Card Name</label>
+            <input required type="text" class="form-control" id="CardName" formControlName="cardName">
           </div>
           <div class="form-group CVV">
             <label for="cvv">CVV</label>
-            <input type="text" class="form-control" id="cvv" formControlName="cvv" required>
+            <input type="number" class="form-control" id="cvv" formControlName="cvv" required pattern="^[ 0-9]+$">
           </div>
           <div class="form-group" id="card-number-field">
             <label for="cardNumber">Card Number</label>
-            <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber" required>
+            <input type="number" class="form-control" id="cardNumber" formControlName="cardNumber" required pattern="^[ 0-9]+$">
           </div>
           <div class="form-group" id="credit_cards">
             <img src="https://bootstraptema.ru/snippets/form/2017/visa.jpg" id="visa">
             <img src="https://bootstraptema.ru/snippets/form/2017/mastercard.jpg" id="mastercard">
           </div>
           <div class="form-group" id="pay-now">
-            <button class="btn btn-default"  (click)="send()">Confirm</button>
+            <button *ngIf="currentUser.role === 'Company'" class="btn btn-default"  (click)="sendCompany()">Confirm</button>
+            <button *ngIf="currentUser.role === 'User'" class="btn btn-default"  (click)="send()">Confirm</button>
           </div>
         </form>
       </div>

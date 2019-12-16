@@ -27,7 +27,10 @@ export class BillingAccountService {
     return this.http.get<BillingAccountModel>('/api/v1/billingaccount/' + id);
   }
   getBillingAccountUser(userId: string): Observable<BillingAccountModel[]> {
-    return this.http.get<BillingAccountModel[]>("/api/v1/billingaccount/find-ba-user/" + userId);
+    return this.http.get<BillingAccountModel[]>("/api/v1/billingaccount/ba-user/" + userId);
+  }
+  getBillingAccountCompany(userId: string): Observable<BillingAccountModel[]> {
+    return this.http.get<BillingAccountModel[]>("/api/v1/billingaccount/ba-company/" + userId);
   }
   getAll(): Observable<BillingAccountModel[]> {
     return this.http.get<BillingAccountModel[]>("/api/v1/billingaccount");

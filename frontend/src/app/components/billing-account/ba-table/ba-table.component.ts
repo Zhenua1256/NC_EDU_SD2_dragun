@@ -5,6 +5,7 @@ import {BillingAccountService} from '../../../service/Billing-Account-Service';
 import {UserModel} from '../../users/model/user.model';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-ba-table',
@@ -17,6 +18,8 @@ export class BaTableComponent implements OnInit {
   public amount: number;
   private subscriptions: Subscription[] = [];
   public currentUser: UserModel = {};
+
+  public fillForm: FormGroup;
   closeResult: string;
 
   constructor(private billingAccountService: BillingAccountService,
@@ -25,6 +28,10 @@ export class BaTableComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.fillForm = new FormGroup({
+      fill: new FormControl('',
+        [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.min(0)])
+    });
     this.loadBillingAccounts();
   }
   open(content, billingAccount) {
@@ -47,12 +54,12 @@ export class BaTableComponent implements OnInit {
     }
   }
   private loadBillingAccounts(): void {
-    if (this.currentUser.role === "User" || this.currentUser.role === "Company") {
+    if (this.currentUser.role === "User") {
       this.subscriptions.push(this.billingAccountService.getBillingAccountUser(this.currentUser.id).subscribe(billingaccount => {
         this.billingAccounts = billingaccount as BillingAccountModel[];
       }));
     } else {
-      this.subscriptions.push(this.billingAccountService.getAll().subscribe(billingaccount => {
+      this.subscriptions.push(this.billingAccountService.getBillingAccountCompany(this.currentUser.id).subscribe(billingaccount => {
         this.billingAccounts = billingaccount as BillingAccountModel[];
     }));
     }

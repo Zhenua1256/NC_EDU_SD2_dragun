@@ -51,4 +51,7 @@ public class BillingAccountService {
     public List<BillingAccount> getAllByUser(Long id){
         return Arrays.asList(restTemplate.getForObject(backendURL + "billingaccount/baByUserId/" + id, BillingAccount[].class));
     }
+    public List<BillingAccount> getAllByCompany(Long id){
+        return Arrays.asList(restTemplate.getForObject(backendURL + "billingaccount/baByCompanyId/" + id, BillingAccount[].class));
+    }
 }

@@ -2,12 +2,11 @@ package com.netcraker.dragun.controllers;
 
 import com.netcraker.dragun.converter.BillingAccountConverter;
 import com.netcraker.dragun.model.BillingAccount;
-import com.netcraker.dragun.model.BillingAccountDto;
 import com.netcraker.dragun.service.BillingAccountService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +15,6 @@ import java.util.List;
 public class BillingAccountController {
     private final BillingAccountService billingAccountService;
     private final BillingAccountConverter billingAccountConverter;
-
 
     @GetMapping
     public List<BillingAccount> getAll() {
@@ -34,7 +32,7 @@ public class BillingAccountController {
         return billingAccountConverter.converterBillingAccountFromDto(billingAccountService.create(billingAccountDto));
     }*/
     @PostMapping
-    public BillingAccount create(@RequestBody BillingAccount billingAccount) {
+    public BillingAccount create(@Valid @RequestBody BillingAccount billingAccount) {
         return billingAccountService.create(billingAccount);
     }
 
@@ -50,11 +48,17 @@ public class BillingAccountController {
     }
 
     @PostMapping(value = "/{id}")
-    public void refillWallet(@PathVariable Long id, @RequestBody String amount) {
+    public void refillWallet(@PathVariable Long id,@Valid @RequestBody String amount) {
         billingAccountService.refill(id, amount);
     }
-    @RequestMapping(value = "/find-ba-user/{id}")
+
+    @RequestMapping(value = "/ba-user/{id}")
     public List<BillingAccount> getAllByUser(@PathVariable Long id){
        return billingAccountService.getAllByUser(id);
+    }
+
+    @RequestMapping(value = "/ba-company/{id}")
+    public List<BillingAccount> getAllByCompany(@PathVariable Long id){
+        return billingAccountService.getAllByCompany(id);
     }
 }

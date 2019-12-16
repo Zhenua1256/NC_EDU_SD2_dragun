@@ -1,6 +1,6 @@
 <div>
   <nav class="navbar navbar-expand-lg bg-dark">
-    <a class="navbar-brand navbar-primery " href="#">Home</a>
+    <a class="navbar-brand navbar-primery " routerLink="/home">Home</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
       </ul>
@@ -48,12 +48,21 @@
     <form>
       <div class="form-group">
         <div class="input-group">
-          <input type="amount" class="form-control" id="inputBalance" placeholder="give me my money" required pattern="^[ 0-9]+$" [(ngModel)]="amount" name="first" >
+          <form [formGroup]="fillForm">
+          <input class="form-control"
+                 id="inputBalance"
+                 placeholder="give me my money"
+                 formControlName="fill"
+                 [(ngModel)]="amount" name="first">
+          </form>
+        </div>
+        <div *ngIf="!fillForm.controls.fill.valid && fillForm.controls.fill.touched" class = "error-data">
+          please enter number
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close(amount)">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(amount)" [disabled]="!fillForm.controls.fill.valid">Save</button>
   </div>
 </ng-template>
